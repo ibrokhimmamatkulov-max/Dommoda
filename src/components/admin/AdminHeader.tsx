@@ -28,6 +28,9 @@ export function AdminHeader(): React.JSX.Element {
         <Link href="/admin" className="text-sm text-on-surface-variant hover:text-on-surface transition-colors">
           Товары
         </Link>
+        <Link href="/admin/settings" className="text-sm text-on-surface-variant hover:text-on-surface transition-colors">
+          Баннер
+        </Link>
         <button
           onClick={handleLogout}
           disabled={isLoggingOut}

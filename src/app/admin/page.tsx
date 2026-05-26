@@ -4,7 +4,10 @@ import { AdminHeader } from '@/components/admin/AdminHeader'
 import { ProductsTable } from '@/components/admin/ProductsTable'
 import type { AdminProduct, AdminProductsResponse } from '@/types/admin'
 
-const BACKEND_URL = process.env.BACKEND_URL ?? 'http://localhost:8000'
+const BACKEND_URL =
+  process.env.BACKEND_URL ??
+  process.env.NEXT_PUBLIC_BACKEND_URL ??
+  'https://backanddommoda.onrender.com'
 
 type FetchResult =
   | { ok: true; products: AdminProduct[] }

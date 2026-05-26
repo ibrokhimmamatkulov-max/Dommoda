@@ -1,16 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { TopAppBar } from '@/components/layout/TopAppBar'
 import { BottomNavBar } from '@/components/layout/BottomNavBar'
 import { NavigationDrawer } from '@/components/layout/NavigationDrawer'
 import { HeroBanner } from '@/components/home/HeroBanner'
 import { FeaturedSection } from '@/components/home/FeaturedSection'
 import { CategoryChips } from '@/components/catalog/CategoryChips'
-import bannersData from '@/data/banners.json'
 import type { Banner } from '@/types'
 
-const banners = bannersData as Banner[]
+const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'https://backanddommoda.onrender.com'
 
 const HOME_CATEGORIES = [
   { href: '/catalog/women', label: 'Женщинам' },
@@ -22,8 +21,24 @@ const HOME_CATEGORIES = [
 
 export default function HomePage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [banner, setBanner] = useState<Banner | null>(null)
 
-  const banner = banners[0]
+  useEffect(() => {
+    fetch(`${BACKEND}/api/settings/banner`)
+      .then((r) => r.json())
+      .then((data) =>
+        setBanner({
+          id: 'main',
+          imageUrl: data.imageUrl,
+          alt: data.headline,
+          badgeText: data.badgeText,
+          headline: data.headline,
+          ctaText: data.ctaText,
+          ctaUrl: data.ctaUrl,
+        })
+      )
+      .catch(() => {})
+  }, [])
 
   return (
     <>
