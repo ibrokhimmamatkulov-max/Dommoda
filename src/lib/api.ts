@@ -1,8 +1,6 @@
 import type { Product } from '@/types'
-import productsData from '@/data/products.json'
 
-const delay = (ms: number): Promise<void> =>
-  new Promise((resolve) => setTimeout(resolve, ms))
+const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'https://backanddommoda.onrender.com'
 
 export async function getProducts(params?: {
   category?: string
@@ -11,57 +9,30 @@ export async function getProducts(params?: {
   page?: number
   limit?: number
 }): Promise<{ products: Product[]; total: number }> {
-  await delay(300)
+  const qs = new URLSearchParams()
+  if (params?.category) qs.set('category', params.category)
+  if (params?.subcategory) qs.set('subcategory', params.subcategory)
+  if (params?.sort) qs.set('sort', params.sort)
+  if (params?.page) qs.set('page', String(params.page))
+  if (params?.limit) qs.set('limit', String(params.limit))
 
-  let filtered = productsData as Product[]
-
-  if (params?.category) {
-    filtered = filtered.filter((p) => p.category === params.category)
-  }
-
-  if (params?.subcategory) {
-    filtered = filtered.filter((p) => p.subcategory === params.subcategory)
-  }
-
-  if (params?.sort) {
-    switch (params.sort) {
-      case 'price_asc':
-        filtered = [...filtered].sort((a, b) => a.price - b.price)
-        break
-      case 'price_desc':
-        filtered = [...filtered].sort((a, b) => b.price - a.price)
-        break
-      case 'new':
-        filtered = [...filtered].reverse()
-        break
-      case 'popular':
-      default:
-        filtered = [...filtered].sort((a, b) => b.reviewCount - a.reviewCount)
-        break
-    }
-  }
-
-  const total = filtered.length
-  const page = params?.page ?? 1
-  const limit = params?.limit ?? 24
-  const start = (page - 1) * limit
-  const paginated = filtered.slice(start, start + limit)
-
-  return { products: paginated, total }
+  const res = await fetch(`${BACKEND}/api/products?${qs}`)
+  if (!res.ok) throw new Error('Failed to fetch products')
+  const data = await res.json() as { products: Product[]; total: number }
+  return { products: data.products, total: data.total }
 }
 
 export async function getProductById(id: string): Promise<Product | null> {
-  await delay(300)
-  const found = (productsData as Product[]).find((p) => p.id === id)
-  return found ?? null
+  const res = await fetch(`${BACKEND}/api/products/${id}`)
+  if (res.status === 404) return null
+  if (!res.ok) throw new Error('Failed to fetch product')
+  return res.json() as Promise<Product>
 }
 
 export async function getFeaturedProducts(): Promise<Product[]> {
-  await delay(300)
-  const sorted = [...(productsData as Product[])].sort(
-    (a, b) => b.reviewCount - a.reviewCount
-  )
-  return sorted.slice(0, 4)
+  const res = await fetch(`${BACKEND}/api/products/featured`)
+  if (!res.ok) throw new Error('Failed to fetch featured products')
+  return res.json() as Promise<Product[]>
 }
 
 export async function validatePromoCode(code: string): Promise<{
@@ -69,15 +40,11 @@ export async function validatePromoCode(code: string): Promise<{
   discountAmount?: number
   discountPercent?: number
 }> {
-  await delay(300)
-
   if (code === 'DOMMODA10') {
     return { valid: true, discountPercent: 10 }
   }
-
   if (code === 'FIRST500') {
     return { valid: true, discountAmount: 500 }
   }
-
   return { valid: false }
 }

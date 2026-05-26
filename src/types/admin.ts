@@ -34,6 +34,7 @@ export interface AdminProductFormData {
   description: string
   sizes: ProductSizeLabel[]
   in_stock: boolean
+  images: string[]
 }
 
 export interface AdminLoginRequest {

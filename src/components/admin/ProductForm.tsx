@@ -25,6 +25,7 @@ const DEFAULT_FORM: AdminProductFormData = {
   description: '',
   sizes: [],
   in_stock: true,
+  images: [],
 }
 
 function toFormData(product: AdminProduct): AdminProductFormData {
@@ -38,6 +39,7 @@ function toFormData(product: AdminProduct): AdminProductFormData {
     description: product.description,
     sizes: product.sizes,
     in_stock: product.in_stock,
+    images: product.images ?? [],
   }
 }
 
@@ -219,6 +221,30 @@ export function ProductForm({ product }: ProductFormProps): React.JSX.Element {
           disabled={isSaving}
           value={form.description}
           onChange={(e) => setField('description', e.target.value)}
+          className="border border-outline-variant rounded px-3 py-2 text-sm text-on-surface bg-surface-container-lowest focus:outline-none focus:border-primary disabled:opacity-50 resize-none"
+        />
+      </div>
+
+      {/* Images */}
+      <div className="flex flex-col gap-1">
+        <label htmlFor="images" className="text-sm font-medium text-on-surface-variant">
+          Ссылки на фото <span className="text-on-surface-variant font-normal">(каждая с новой строки)</span>
+        </label>
+        <textarea
+          id="images"
+          rows={3}
+          disabled={isSaving}
+          placeholder="https://example.com/image1.jpg"
+          value={form.images.join('\n')}
+          onChange={(e) =>
+            setField(
+              'images',
+              e.target.value
+                .split('\n')
+                .map((s) => s.trim())
+                .filter(Boolean)
+            )
+          }
           className="border border-outline-variant rounded px-3 py-2 text-sm text-on-surface bg-surface-container-lowest focus:outline-none focus:border-primary disabled:opacity-50 resize-none"
         />
       </div>
