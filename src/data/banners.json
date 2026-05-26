@@ -1,0 +1,11 @@
+[
+  {
+    "id": "banner-001",
+    "imageUrl": "https://placehold.co/600x600/000000/ffffff?text=DOMMODA",
+    "alt": "Новая коллекция",
+    "badgeText": "-70%",
+    "headline": "НОВАЯ КОЛЛЕКЦИЯ",
+    "ctaText": "Смотреть",
+    "ctaUrl": "/catalog/women"
+  }
+]

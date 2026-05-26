@@ -1,0 +1,669 @@
+[
+  {
+    "id": "prod-001",
+    "brand": "ZARA",
+    "name": "Платье миди с цветочным принтом",
+    "category": "women",
+    "subcategory": "dresses",
+    "price": 4990,
+    "priceOriginal": 7990,
+    "discountPercent": 38,
+    "images": [
+      "https://placehold.co/400x533/eeeeee/5e5e5e?text=ZARA+1",
+      "https://placehold.co/400x533/e8e8e8/5e5e5e?text=ZARA+2",
+      "https://placehold.co/400x533/f3f3f3/5e5e5e?text=ZARA+3",
+      "https://placehold.co/400x533/dadada/5e5e5e?text=ZARA+4"
+    ],
+    "sizes": [
+      { "label": "XS", "available": true },
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": true },
+      { "label": "XXL", "available": false }
+    ],
+    "colors": [
+      { "label": "Чёрный", "hex": "#000000" },
+      { "label": "Белый", "hex": "#FFFFFF" },
+      { "label": "Бежевый", "hex": "#E5DCC4" },
+      { "label": "Синий", "hex": "#0A192F" }
+    ],
+    "rating": 4.2,
+    "reviewCount": 128,
+    "description": "Элегантное платье миди с нежным цветочным принтом. Изготовлено из лёгкой ткани с приятной текстурой. Идеально для летних мероприятий и прогулок.",
+    "inStock": true
+  },
+  {
+    "id": "prod-002",
+    "brand": "MANGO",
+    "name": "Платье миди с драпировкой",
+    "category": "women",
+    "subcategory": "dresses",
+    "price": 4990,
+    "priceOriginal": 7990,
+    "discountPercent": 38,
+    "images": [
+      "https://placehold.co/400x533/eeeeee/5e5e5e?text=MANGO+1",
+      "https://placehold.co/400x533/e8e8e8/5e5e5e?text=MANGO+2"
+    ],
+    "sizes": [
+      { "label": "XS", "available": true },
+      { "label": "S", "available": true },
+      { "label": "M", "available": false },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": false }
+    ],
+    "colors": [
+      { "label": "Бежевый", "hex": "#C4A882" },
+      { "label": "Чёрный", "hex": "#000000" }
+    ],
+    "rating": 4.5,
+    "reviewCount": 87,
+    "description": "Изысканное платье с мягкой драпировкой по талии. Создаёт плавный силуэт и подчёркивает женственность.",
+    "inStock": true
+  },
+  {
+    "id": "prod-003",
+    "brand": "ZARA",
+    "name": "Блузка из хлопка с объёмными рукавами",
+    "category": "women",
+    "subcategory": "blouses",
+    "price": 3599,
+    "images": [
+      "https://placehold.co/400x533/f3f3f3/5e5e5e?text=ZARA+Blouse"
+    ],
+    "sizes": [
+      { "label": "XS", "available": true },
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": true }
+    ],
+    "colors": [
+      { "label": "Белый", "hex": "#FFFFFF" },
+      { "label": "Голубой", "hex": "#A8C8E8" }
+    ],
+    "rating": 4.0,
+    "reviewCount": 44,
+    "description": "Лёгкая хлопковая блузка с романтичными объёмными рукавами. Подходит как для офиса, так и для casual-образов.",
+    "inStock": true
+  },
+  {
+    "id": "prod-004",
+    "brand": "LEVI'S",
+    "name": "Джинсы прямого кроя 501",
+    "category": "women",
+    "subcategory": "jeans",
+    "price": 8990,
+    "priceOriginal": 11290,
+    "discountPercent": 20,
+    "images": [
+      "https://placehold.co/400x533/eeeeee/5e5e5e?text=LEVIS+501",
+      "https://placehold.co/400x533/e8e8e8/5e5e5e?text=LEVIS+501+2"
+    ],
+    "sizes": [
+      { "label": "XS", "available": false },
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": true }
+    ],
+    "colors": [
+      { "label": "Синий", "hex": "#3B5998" },
+      { "label": "Чёрный", "hex": "#000000" }
+    ],
+    "rating": 4.7,
+    "reviewCount": 312,
+    "description": "Культовые джинсы прямого кроя с высокой посадкой. Изготовлены из плотного денима с небольшим добавлением эластана для комфорта.",
+    "inStock": true
+  },
+  {
+    "id": "prod-005",
+    "brand": "MASSIMO DUTTI",
+    "name": "Кожаная куртка-косуха",
+    "category": "women",
+    "subcategory": "jackets",
+    "price": 24990,
+    "images": [
+      "https://placehold.co/400x533/1a1c1c/ffffff?text=MASSIMO+DUTTI"
+    ],
+    "sizes": [
+      { "label": "XS", "available": true },
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": false },
+      { "label": "XL", "available": false }
+    ],
+    "colors": [
+      { "label": "Чёрный", "hex": "#000000" },
+      { "label": "Коричневый", "hex": "#5C3A1E" }
+    ],
+    "rating": 4.8,
+    "reviewCount": 56,
+    "description": "Классическая кожаная косуха из натуральной кожи. Идеальный выбор для создания стильного образа в стиле рок.",
+    "inStock": true
+  },
+  {
+    "id": "prod-006",
+    "brand": "VAGABOND",
+    "name": "Кожаные туфли-лодочки",
+    "category": "women",
+    "subcategory": "shoes",
+    "price": 7640,
+    "priceOriginal": 8990,
+    "discountPercent": 15,
+    "images": [
+      "https://placehold.co/400x533/f3f3f3/5e5e5e?text=VAGABOND"
+    ],
+    "sizes": [
+      { "label": "36", "available": true },
+      { "label": "37", "available": true },
+      { "label": "38", "available": true },
+      { "label": "39", "available": false },
+      { "label": "40", "available": true }
+    ],
+    "colors": [
+      { "label": "Чёрный", "hex": "#000000" },
+      { "label": "Бежевый", "hex": "#C9B18A" }
+    ],
+    "rating": 4.3,
+    "reviewCount": 91,
+    "description": "Элегантные туфли-лодочки из натуральной кожи на каблуке 7 см. Удобная стелька обеспечивает комфорт в течение всего дня.",
+    "inStock": true
+  },
+  {
+    "id": "prod-007",
+    "brand": "H&M",
+    "name": "Льняное платье макси",
+    "category": "women",
+    "subcategory": "dresses",
+    "price": 3299,
+    "images": [
+      "https://placehold.co/400x533/e8e8e8/5e5e5e?text=H%26M+Linen"
+    ],
+    "sizes": [
+      { "label": "XS", "available": true },
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": true },
+      { "label": "XXL", "available": true }
+    ],
+    "colors": [
+      { "label": "Натуральный", "hex": "#D4C5A9" },
+      { "label": "Белый", "hex": "#FFFFFF" },
+      { "label": "Оливковый", "hex": "#6B7C45" }
+    ],
+    "rating": 3.9,
+    "reviewCount": 203,
+    "description": "Воздушное платье макси из 100% льна. Натуральный материал идеально подходит для жаркого климата.",
+    "inStock": true
+  },
+  {
+    "id": "prod-008",
+    "brand": "TOMMY HILFIGER",
+    "name": "Рубашка в полоску",
+    "category": "men",
+    "subcategory": "shirts",
+    "price": 5490,
+    "priceOriginal": 7290,
+    "discountPercent": 25,
+    "images": [
+      "https://placehold.co/400x533/eeeeee/5e5e5e?text=TOMMY+H"
+    ],
+    "sizes": [
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": true },
+      { "label": "XXL", "available": false }
+    ],
+    "colors": [
+      { "label": "Синий/Белый", "hex": "#1E3A8A" },
+      { "label": "Красный/Белый", "hex": "#B91C1C" }
+    ],
+    "rating": 4.4,
+    "reviewCount": 167,
+    "description": "Классическая рубашка в полоску из хлопкового поплина. Фирменный логотип вышит на груди.",
+    "inStock": true
+  },
+  {
+    "id": "prod-009",
+    "brand": "LEVI'S",
+    "name": "Джинсы 512 Slim Taper",
+    "category": "men",
+    "subcategory": "jeans",
+    "price": 9990,
+    "images": [
+      "https://placehold.co/400x533/3B5998/ffffff?text=LEVIS+512"
+    ],
+    "sizes": [
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": true }
+    ],
+    "colors": [
+      { "label": "Тёмно-синий", "hex": "#1E2D5A" },
+      { "label": "Серый", "hex": "#6B6B6B" }
+    ],
+    "rating": 4.6,
+    "reviewCount": 289,
+    "description": "Современные джинсы зауженного кроя с конической брючиной. Идеальный баланс между классикой и современностью.",
+    "inStock": true
+  },
+  {
+    "id": "prod-010",
+    "brand": "POLO RALPH LAUREN",
+    "name": "Поло из хлопка",
+    "category": "men",
+    "subcategory": "polo",
+    "price": 6990,
+    "priceOriginal": 9990,
+    "discountPercent": 30,
+    "images": [
+      "https://placehold.co/400x533/f3f3f3/5e5e5e?text=POLO+RL"
+    ],
+    "sizes": [
+      { "label": "S", "available": false },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": true },
+      { "label": "XXL", "available": true }
+    ],
+    "colors": [
+      { "label": "Белый", "hex": "#FFFFFF" },
+      { "label": "Тёмно-синий", "hex": "#0A1628" },
+      { "label": "Красный", "hex": "#C41E3A" }
+    ],
+    "rating": 4.5,
+    "reviewCount": 134,
+    "description": "Классическое поло из плотного хлопкового пике. Вышитый логотип с пони — символ американского стиля.",
+    "inStock": true
+  },
+  {
+    "id": "prod-011",
+    "brand": "NIKE",
+    "name": "Кроссовки Air Max 270",
+    "category": "men",
+    "subcategory": "shoes",
+    "price": 11990,
+    "images": [
+      "https://placehold.co/400x533/1a1c1c/ffffff?text=NIKE+AM270"
+    ],
+    "sizes": [
+      { "label": "40", "available": true },
+      { "label": "41", "available": true },
+      { "label": "42", "available": true },
+      { "label": "43", "available": true },
+      { "label": "44", "available": false },
+      { "label": "45", "available": true }
+    ],
+    "colors": [
+      { "label": "Чёрный/Белый", "hex": "#000000" },
+      { "label": "Серый", "hex": "#808080" }
+    ],
+    "rating": 4.7,
+    "reviewCount": 445,
+    "description": "Инновационные кроссовки с крупной воздушной подушкой Max Air в пятке. Обеспечивают максимальный комфорт при ходьбе.",
+    "inStock": true
+  },
+  {
+    "id": "prod-012",
+    "brand": "ZARA KIDS",
+    "name": "Джинсовый комбинезон",
+    "category": "kids",
+    "subcategory": "overalls",
+    "price": 2490,
+    "priceOriginal": 3490,
+    "discountPercent": 29,
+    "images": [
+      "https://placehold.co/400x533/A8C8E8/1a1c1c?text=ZARA+KIDS"
+    ],
+    "sizes": [
+      { "label": "86", "available": true },
+      { "label": "92", "available": true },
+      { "label": "98", "available": true },
+      { "label": "104", "available": true },
+      { "label": "110", "available": false }
+    ],
+    "colors": [
+      { "label": "Синий", "hex": "#4A90D9" }
+    ],
+    "rating": 4.3,
+    "reviewCount": 67,
+    "description": "Удобный джинсовый комбинезон для активных детей. Регулируемые лямки позволяют подстроить размер.",
+    "inStock": true
+  },
+  {
+    "id": "prod-013",
+    "brand": "H&M KIDS",
+    "name": "Платье в горошек",
+    "category": "kids",
+    "subcategory": "dresses",
+    "price": 1599,
+    "images": [
+      "https://placehold.co/400x533/FFD6E0/1a1c1c?text=HM+KIDS"
+    ],
+    "sizes": [
+      { "label": "86", "available": true },
+      { "label": "92", "available": true },
+      { "label": "98", "available": true },
+      { "label": "104", "available": true },
+      { "label": "110", "available": true },
+      { "label": "116", "available": false }
+    ],
+    "colors": [
+      { "label": "Розовый", "hex": "#FFB6C1" },
+      { "label": "Красный", "hex": "#CC0000" }
+    ],
+    "rating": 4.1,
+    "reviewCount": 43,
+    "description": "Яркое платье в горошек из мягкого хлопка. Подходит для повседневной носки и праздников.",
+    "inStock": true
+  },
+  {
+    "id": "prod-014",
+    "brand": "ADIDAS KIDS",
+    "name": "Спортивный костюм",
+    "category": "kids",
+    "subcategory": "sport",
+    "price": 3990,
+    "priceOriginal": 5490,
+    "discountPercent": 27,
+    "images": [
+      "https://placehold.co/400x533/000000/ffffff?text=ADIDAS+KIDS"
+    ],
+    "sizes": [
+      { "label": "92", "available": true },
+      { "label": "98", "available": true },
+      { "label": "104", "available": true },
+      { "label": "110", "available": true },
+      { "label": "116", "available": true }
+    ],
+    "colors": [
+      { "label": "Чёрный", "hex": "#000000" },
+      { "label": "Тёмно-синий", "hex": "#003087" }
+    ],
+    "rating": 4.4,
+    "reviewCount": 89,
+    "description": "Удобный спортивный костюм Adidas для детей. Курточка и брюки из мягкого флиса для активных игр.",
+    "inStock": true
+  },
+  {
+    "id": "prod-015",
+    "brand": "ADIDAS",
+    "name": "Леггинсы для тренировок Techfit",
+    "category": "sport",
+    "subcategory": "leggings",
+    "price": 3490,
+    "priceOriginal": 4990,
+    "discountPercent": 30,
+    "images": [
+      "https://placehold.co/400x533/1a1c1c/ffffff?text=ADIDAS+Techfit"
+    ],
+    "sizes": [
+      { "label": "XS", "available": true },
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": false }
+    ],
+    "colors": [
+      { "label": "Чёрный", "hex": "#000000" },
+      { "label": "Серый", "hex": "#808080" }
+    ],
+    "rating": 4.6,
+    "reviewCount": 234,
+    "description": "Компрессионные леггинсы для интенсивных тренировок. Технология Techfit обеспечивает поддержку мышц.",
+    "inStock": true
+  },
+  {
+    "id": "prod-016",
+    "brand": "NIKE",
+    "name": "Футболка Dri-FIT",
+    "category": "sport",
+    "subcategory": "tshirts",
+    "price": 2990,
+    "images": [
+      "https://placehold.co/400x533/eeeeee/5e5e5e?text=NIKE+DRI-FIT"
+    ],
+    "sizes": [
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": true },
+      { "label": "XXL", "available": true }
+    ],
+    "colors": [
+      { "label": "Белый", "hex": "#FFFFFF" },
+      { "label": "Чёрный", "hex": "#000000" },
+      { "label": "Серый", "hex": "#808080" }
+    ],
+    "rating": 4.5,
+    "reviewCount": 178,
+    "description": "Функциональная футболка с технологией Dri-FIT, которая отводит влагу от тела во время тренировок.",
+    "inStock": true
+  },
+  {
+    "id": "prod-017",
+    "brand": "UNDER ARMOUR",
+    "name": "Спортивная куртка Storm",
+    "category": "sport",
+    "subcategory": "jackets",
+    "price": 8990,
+    "priceOriginal": 12990,
+    "discountPercent": 31,
+    "images": [
+      "https://placehold.co/400x533/1a1c1c/ffffff?text=UA+STORM"
+    ],
+    "sizes": [
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": false },
+      { "label": "XXL", "available": false }
+    ],
+    "colors": [
+      { "label": "Чёрный", "hex": "#000000" },
+      { "label": "Тёмно-серый", "hex": "#3C3C3C" }
+    ],
+    "rating": 4.7,
+    "reviewCount": 98,
+    "description": "Водоотталкивающая спортивная куртка для тренировок на открытом воздухе. Технология Storm защищает от ветра и лёгкого дождя.",
+    "inStock": true
+  },
+  {
+    "id": "prod-018",
+    "brand": "COS",
+    "name": "Широкие брюки из шерсти",
+    "category": "women",
+    "subcategory": "pants",
+    "price": 12490,
+    "images": [
+      "https://placehold.co/400x533/e8e8e8/5e5e5e?text=COS+Pants"
+    ],
+    "sizes": [
+      { "label": "XS", "available": true },
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true }
+    ],
+    "colors": [
+      { "label": "Чёрный", "hex": "#000000" },
+      { "label": "Бежевый", "hex": "#C4B49A" },
+      { "label": "Серый", "hex": "#808080" }
+    ],
+    "rating": 4.4,
+    "reviewCount": 62,
+    "description": "Широкие брюки из смесовой шерсти с высокой посадкой. Минималистичный крой подходит для разных случаев.",
+    "inStock": true
+  },
+  {
+    "id": "prod-019",
+    "brand": "ARKET",
+    "name": "Льняная рубашка оверсайз",
+    "category": "men",
+    "subcategory": "shirts",
+    "price": 7990,
+    "priceOriginal": 10990,
+    "discountPercent": 27,
+    "images": [
+      "https://placehold.co/400x533/f3f3f3/5e5e5e?text=ARKET+Shirt"
+    ],
+    "sizes": [
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": true },
+      { "label": "XXL", "available": true }
+    ],
+    "colors": [
+      { "label": "Белый", "hex": "#FFFFFF" },
+      { "label": "Голубой", "hex": "#87CEEB" },
+      { "label": "Оливковый", "hex": "#6B7C45" }
+    ],
+    "rating": 4.3,
+    "reviewCount": 48,
+    "description": "Рубашка оверсайз из 100% льна. Особый прохладный материал делает её идеальной для лета.",
+    "inStock": true
+  },
+  {
+    "id": "prod-020",
+    "brand": "NEW BALANCE",
+    "name": "Кроссовки 574 Classic",
+    "category": "sport",
+    "subcategory": "shoes",
+    "price": 8490,
+    "images": [
+      "https://placehold.co/400x533/eeeeee/5e5e5e?text=NB+574"
+    ],
+    "sizes": [
+      { "label": "38", "available": true },
+      { "label": "39", "available": true },
+      { "label": "40", "available": true },
+      { "label": "41", "available": true },
+      { "label": "42", "available": true },
+      { "label": "43", "available": false },
+      { "label": "44", "available": true }
+    ],
+    "colors": [
+      { "label": "Серый/Синий", "hex": "#808080" },
+      { "label": "Чёрный/Белый", "hex": "#000000" }
+    ],
+    "rating": 4.6,
+    "reviewCount": 367,
+    "description": "Культовые кроссовки New Balance 574. Классический дизайн с современными технологиями амортизации ENCAP.",
+    "inStock": true
+  },
+  {
+    "id": "prod-021",
+    "brand": "GAP KIDS",
+    "name": "Худи с карманом кенгуру",
+    "category": "kids",
+    "subcategory": "hoodies",
+    "price": 2190,
+    "priceOriginal": 2990,
+    "discountPercent": 27,
+    "images": [
+      "https://placehold.co/400x533/eeeeee/5e5e5e?text=GAP+KIDS"
+    ],
+    "sizes": [
+      { "label": "92", "available": true },
+      { "label": "98", "available": true },
+      { "label": "104", "available": true },
+      { "label": "110", "available": true },
+      { "label": "116", "available": true },
+      { "label": "122", "available": false }
+    ],
+    "colors": [
+      { "label": "Серый", "hex": "#A0A0A0" },
+      { "label": "Синий", "hex": "#4A90D9" },
+      { "label": "Красный", "hex": "#CC0000" }
+    ],
+    "rating": 4.2,
+    "reviewCount": 55,
+    "description": "Тёплое худи из мягкого флиса с удобным карманом-кенгуру. Идеально для прохладной погоды.",
+    "inStock": true
+  },
+  {
+    "id": "prod-022",
+    "brand": "SAINT LAURENT",
+    "name": "Пиджак Classic",
+    "category": "men",
+    "subcategory": "jackets",
+    "price": 124000,
+    "images": [
+      "https://placehold.co/400x533/1a1c1c/ffffff?text=YSL+Jacket"
+    ],
+    "sizes": [
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": false },
+      { "label": "XL", "available": false }
+    ],
+    "colors": [
+      { "label": "Чёрный", "hex": "#000000" }
+    ],
+    "rating": 4.9,
+    "reviewCount": 12,
+    "description": "Культовый пиджак из тонкой шерсти. Безупречный крой в стиле Saint Laurent Paris.",
+    "inStock": true
+  },
+  {
+    "id": "prod-023",
+    "brand": "ADIDAS",
+    "name": "Шорты Essentials",
+    "category": "sport",
+    "subcategory": "shorts",
+    "price": 2490,
+    "images": [
+      "https://placehold.co/400x533/000000/ffffff?text=ADIDAS+Shorts"
+    ],
+    "sizes": [
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": true },
+      { "label": "XXL", "available": true }
+    ],
+    "colors": [
+      { "label": "Чёрный", "hex": "#000000" },
+      { "label": "Серый", "hex": "#808080" },
+      { "label": "Тёмно-синий", "hex": "#003087" }
+    ],
+    "rating": 4.3,
+    "reviewCount": 156,
+    "description": "Классические шорты Adidas из лёгкого трикотажа. Эластичный пояс с завязками и карман на молнии.",
+    "inStock": true
+  },
+  {
+    "id": "prod-024",
+    "brand": "CALVIN KLEIN",
+    "name": "Кашемировый свитер",
+    "category": "women",
+    "subcategory": "knitwear",
+    "price": 14990,
+    "priceOriginal": 19990,
+    "discountPercent": 25,
+    "images": [
+      "https://placehold.co/400x533/e8e8e8/5e5e5e?text=CK+Cashmere"
+    ],
+    "sizes": [
+      { "label": "XS", "available": true },
+      { "label": "S", "available": true },
+      { "label": "M", "available": true },
+      { "label": "L", "available": true },
+      { "label": "XL", "available": false }
+    ],
+    "colors": [
+      { "label": "Бежевый", "hex": "#C4B49A" },
+      { "label": "Чёрный", "hex": "#000000" },
+      { "label": "Белый", "hex": "#FFFFFF" }
+    ],
+    "rating": 4.8,
+    "reviewCount": 73,
+    "description": "Мягкий свитер из чистого кашемира. Классический крой с круглым вырезом подходит для любого образа.",
+    "inStock": true
+  }
+]

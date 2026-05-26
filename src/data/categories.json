@@ -1,0 +1,51 @@
+[
+  {
+    "id": "women",
+    "label": "Женщинам",
+    "icon": "female",
+    "subcategories": [
+      { "id": "dresses", "label": "Платья" },
+      { "id": "blouses", "label": "Блузки" },
+      { "id": "jeans", "label": "Джинсы" },
+      { "id": "jackets", "label": "Куртки" },
+      { "id": "shoes", "label": "Обувь" },
+      { "id": "pants", "label": "Брюки" },
+      { "id": "knitwear", "label": "Трикотаж" }
+    ]
+  },
+  {
+    "id": "men",
+    "label": "Мужчинам",
+    "icon": "male",
+    "subcategories": [
+      { "id": "shirts", "label": "Рубашки" },
+      { "id": "jeans", "label": "Джинсы" },
+      { "id": "polo", "label": "Поло" },
+      { "id": "jackets", "label": "Пиджаки" },
+      { "id": "shoes", "label": "Кроссовки" }
+    ]
+  },
+  {
+    "id": "kids",
+    "label": "Детям",
+    "icon": "child_care",
+    "subcategories": [
+      { "id": "dresses", "label": "Платья" },
+      { "id": "overalls", "label": "Комбинезоны" },
+      { "id": "sport", "label": "Спорт" },
+      { "id": "hoodies", "label": "Худи" }
+    ]
+  },
+  {
+    "id": "sport",
+    "label": "Спорт",
+    "icon": "sports_basketball",
+    "subcategories": [
+      { "id": "leggings", "label": "Леггинсы" },
+      { "id": "tshirts", "label": "Футболки" },
+      { "id": "jackets", "label": "Куртки" },
+      { "id": "shoes", "label": "Кроссовки" },
+      { "id": "shorts", "label": "Шорты" }
+    ]
+  }
+]
