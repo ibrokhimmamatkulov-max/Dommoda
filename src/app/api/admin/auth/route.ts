@@ -1,7 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import type { AdminLoginRequest, AdminLoginResponse } from '@/types/admin'
 
-const BACKEND_URL = process.env.BACKEND_URL ?? 'http://localhost:8000'
+const BACKEND_URL =
+  process.env.BACKEND_URL ??
+  process.env.NEXT_PUBLIC_BACKEND_URL ??
+  'https://backanddommoda.onrender.com'
 const COOKIE_NAME = 'admin_token'
 // 7 days in seconds
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 7

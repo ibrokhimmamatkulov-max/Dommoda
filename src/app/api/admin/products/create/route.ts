@@ -1,7 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 
-const BACKEND_URL = process.env.BACKEND_URL ?? 'http://localhost:8000'
+const BACKEND_URL =
+  process.env.BACKEND_URL ??
+  process.env.NEXT_PUBLIC_BACKEND_URL ??
+  'https://backanddommoda.onrender.com'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const cookieStore = await cookies()
