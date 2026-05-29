@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { TopAppBar } from '@/components/layout/TopAppBar'
@@ -10,6 +10,7 @@ import { useCartStore } from '@/store/cartStore'
 import { formatPrice } from '@/lib/formatPrice'
 import type { CheckoutFormData } from '@/types'
 
+const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'https://backanddommoda.onrender.com'
 const DELIVERY_COST = 299
 
 export default function CheckoutPage() {
@@ -18,6 +19,10 @@ export default function CheckoutPage() {
   const getTotalPrice = useCartStore((s) => s.getTotalPrice)
   const getDiscountTotal = useCartStore((s) => s.getDiscountTotal)
   const promoDiscount = useCartStore((s) => s.promoDiscount)
+  const promoCode = useCartStore((s) => s.promoCode)
+  const clearCart = useCartStore((s) => s.clearCart)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const {
     register,
@@ -45,10 +50,53 @@ export default function CheckoutPage() {
   const discountTotal = getDiscountTotal()
   const finalTotal = Math.max(0, totalPrice - discountTotal + DELIVERY_COST)
 
-  const onSubmit = (data: CheckoutFormData) => {
-    // data is validated at this point
-    void data
-    window.alert('Оплата в разработке. Ваш заказ принят!')
+  const onSubmit = async (data: CheckoutFormData) => {
+    setIsSubmitting(true)
+    setSubmitError(null)
+    try {
+      const orderItems = items.map((item) => ({
+        product_id: item.product.id,
+        product_name: item.product.name,
+        brand: item.product.brand,
+        size: item.selectedSize,
+        color: item.selectedColor,
+        quantity: item.quantity,
+        unit_price: item.product.price,
+      }))
+
+      const res = await fetch(`${BACKEND}/api/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          delivery_method: data.deliveryMethod,
+          city: data.city,
+          street: data.street,
+          building: data.building,
+          apartment: data.apartment ?? null,
+          zip_code: data.zip || '000000',
+          recipient_name: data.recipientName,
+          phone: `+992${data.phone}`,
+          email: data.email,
+          comment: data.comment ?? null,
+          items: orderItems,
+          promo_code: promoCode,
+          promo_discount: promoDiscount,
+        }),
+      })
+
+      if (!res.ok) {
+        setSubmitError('Ошибка при оформлении заказа. Попробуйте снова.')
+        return
+      }
+
+      const order = await res.json() as { id: string }
+      clearCart()
+      router.push(`/checkout/success?order=${order.id}`)
+    } catch {
+      setSubmitError('Не удалось подключиться к серверу. Попробуйте снова.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (items.length === 0) {
@@ -253,6 +301,9 @@ export default function CheckoutPage() {
             </div>
           </section>
 
+          {submitError && (
+            <p className="text-error text-sm text-center">{submitError}</p>
+          )}
           {/* Spacer so sticky bar doesn't overlap */}
           <div className="h-8" />
         </form>
@@ -274,12 +325,17 @@ export default function CheckoutPage() {
 
         <button
           onClick={handleSubmit(onSubmit)}
-          className="flex flex-row items-center justify-center bg-primary text-on-primary w-1/2 h-full uppercase font-bold tracking-widest hover:bg-primary-fixed transition-colors gap-2 text-sm"
+          disabled={isSubmitting}
+          className="flex flex-row items-center justify-center bg-primary text-on-primary w-1/2 h-full uppercase font-bold tracking-widest hover:bg-primary-fixed transition-colors gap-2 text-sm disabled:opacity-60"
         >
-          <span>ДАЛЕЕ: ОПЛАТА</span>
-          <span aria-hidden="true" className="material-symbols-outlined">
-            arrow_forward
-          </span>
+          {isSubmitting ? (
+            <span className="material-symbols-outlined animate-spin">progress_activity</span>
+          ) : (
+            <>
+              <span>ОФОРМИТЬ</span>
+              <span aria-hidden="true" className="material-symbols-outlined">arrow_forward</span>
+            </>
+          )}
         </button>
       </div>
     </>
