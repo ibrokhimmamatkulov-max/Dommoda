@@ -214,12 +214,12 @@ export default function OrderTrackingPage() {
       {/* Возврат */}
       {isReturnRequested && (
         <div className="mb-6 bg-orange-50 border border-orange-200 rounded-lg px-4 py-3 text-sm text-orange-800">
-          ↩️ <strong>Возврат запрошен.</strong> Мы свяжемся с вами по телефону для уточнения деталей.
+          ↩️ <strong>Возврат запрошен.</strong> Ожидайте подтверждения.
         </div>
       )}
       {isReturned && (
         <div className="mb-6 bg-green-50 border border-green-200 rounded-lg px-4 py-3 text-sm text-green-800">
-          ✅ <strong>Возврат оформлен.</strong> Средства будут возвращены в течение 3-5 дней.
+          ✅ <strong>Возврат оформлен.</strong>
         </div>
       )}
 
