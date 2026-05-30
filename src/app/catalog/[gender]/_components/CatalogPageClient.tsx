@@ -8,6 +8,7 @@ import { FilterSortBar } from '@/components/catalog/FilterSortBar'
 import { ProductCard } from '@/components/product/ProductCard'
 import { ProductCardSkeleton } from '@/components/product/ProductCardSkeleton'
 import { getProducts } from '@/lib/api'
+import { analytics } from '@/lib/analytics'
 import categoriesData from '@/data/categories.json'
 import type { Product, Category } from '@/types'
 
@@ -38,6 +39,10 @@ export function CatalogPageClient({ gender }: CatalogPageClientProps) {
   // recreated on every page increment — eliminates the stale-closure race condition
   // where rapid "load more" clicks would fire duplicate requests for the same page.
   const pageRef = useRef(1)
+
+  useEffect(() => {
+    analytics.visit(`/catalog/${gender}`)
+  }, [gender])
 
   const categoryData = categories.find((c) => c.id === gender)
   const title = CATEGORY_TITLES[gender] ?? gender.toUpperCase()

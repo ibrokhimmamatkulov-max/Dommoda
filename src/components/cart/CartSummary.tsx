@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useCartStore } from '@/store/cartStore'
 import { formatPrice } from '@/lib/formatPrice'
+import { analytics } from '@/lib/analytics'
 
 const DELIVERY_COST = 299
 
@@ -59,7 +60,7 @@ export function CartSummary() {
 
       <button
         disabled={itemCount === 0}
-        onClick={() => router.push('/checkout')}
+        onClick={() => { analytics.checkoutStart(finalTotal); router.push('/checkout') }}
         className="w-full bg-primary text-on-primary py-4 rounded font-headline font-bold uppercase tracking-wider text-sm hover:bg-inverse-surface transition-colors active:scale-[0.98] shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
       >
         ОФОРМИТЬ ЗАКАЗ

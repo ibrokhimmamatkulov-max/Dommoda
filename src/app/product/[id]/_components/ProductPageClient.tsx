@@ -7,6 +7,7 @@ import { BottomNavBar } from '@/components/layout/BottomNavBar'
 import { ProductImageCarousel } from '@/components/product/ProductImageCarousel'
 import { SizeSelector } from '@/components/product/SizeSelector'
 import { getProductById } from '@/lib/api'
+import { analytics } from '@/lib/analytics'
 import { useCartStore } from '@/store/cartStore'
 import { useWishlistStore } from '@/store/wishlistStore'
 import { formatPrice } from '@/lib/formatPrice'
@@ -58,14 +59,15 @@ export function ProductPageClient({ id }: ProductPageClientProps) {
       .then((data) => {
         if (data == null) {
           setNotFound(true)
-        } else {
-          setProduct(data)
-          // Pre-select first available size
-          const firstAvailable = data.sizes.find((s) => s.available)
-          if (firstAvailable) setSelectedSize(firstAvailable.label)
-          // Pre-select first color
-          if (data.colors.length > 0) setSelectedColor(data.colors[0].hex)
+          return
         }
+        setProduct(data)
+        analytics.productView(`/product/${id}`, data.name, data.brand)
+        // Pre-select first available size
+        const firstAvailable = data.sizes.find((s) => s.available)
+        if (firstAvailable) setSelectedSize(firstAvailable.label)
+        // Pre-select first color
+        if (data.colors.length > 0) setSelectedColor(data.colors[0].hex)
       })
       .catch(() => setNotFound(true))
       .finally(() => setIsLoading(false))
@@ -88,6 +90,7 @@ export function ProductPageClient({ id }: ProductPageClientProps) {
 
     setSizeError(false)
     addItem(product, selectedSize, selectedColor)
+    analytics.addToCart(product.name, product.brand)
 
     setShowToast(true)
     toastTimeout.current = setTimeout(() => setShowToast(false), 2000)
