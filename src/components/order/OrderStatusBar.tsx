@@ -12,11 +12,13 @@ interface OrderStatus {
 }
 
 const STATUS_CONFIG: Record<string, { label: string; icon: string; color: string }> = {
-  confirmed:  { label: 'Подтверждён',  icon: 'check_circle',    color: 'bg-blue-600' },
-  shipped:    { label: 'В пути',        icon: 'local_shipping',  color: 'bg-purple-600' },
-  delivered:  { label: 'Доставлен',    icon: 'home',            color: 'bg-green-600' },
-  cancelled:  { label: 'Отменён',      icon: 'cancel',          color: 'bg-red-600' },
-  pending:    { label: 'Обрабатывается', icon: 'schedule',      color: 'bg-gray-600' },
+  confirmed:        { label: 'Подтверждён',      icon: 'check_circle',    color: 'bg-blue-600' },
+  shipped:          { label: 'В пути',            icon: 'local_shipping',  color: 'bg-purple-600' },
+  delivered:        { label: 'Доставлен',        icon: 'home',            color: 'bg-green-600' },
+  cancelled:        { label: 'Отменён',          icon: 'cancel',          color: 'bg-red-600' },
+  pending:          { label: 'Обрабатывается',   icon: 'schedule',        color: 'bg-gray-600' },
+  return_requested: { label: 'Возврат запрошен', icon: 'assignment_return', color: 'bg-orange-600' },
+  returned:         { label: 'Возврат оформлен', icon: 'check_circle',    color: 'bg-gray-600' },
 }
 
 export function OrderStatusBar() {
@@ -33,7 +35,7 @@ export function OrderStatusBar() {
         if (!data) return
         setOrder({ id: data.id, status: data.status })
         // Убираем из хранилища только если доставлен или отменён
-        if (data.status === 'delivered' || data.status === 'cancelled') {
+        if (['cancelled', 'returned'].includes(data.status)) {
           localStorage.removeItem(STORAGE_KEY)
         }
       })

@@ -38,6 +38,8 @@ const STATUS_LABELS: Record<string, string> = {
   shipped: 'Отправлен',
   delivered: 'Доставлен',
   cancelled: 'Отменён',
+  return_requested: '↩️ Возврат запрошен',
+  returned: 'Возвращён',
 }
 
 const STATUS_COLORS: Record<string, string> = {
@@ -46,6 +48,8 @@ const STATUS_COLORS: Record<string, string> = {
   shipped: 'bg-purple-100 text-purple-800',
   delivered: 'bg-green-100 text-green-800',
   cancelled: 'bg-red-100 text-red-800',
+  return_requested: 'bg-orange-100 text-orange-800',
+  returned: 'bg-gray-100 text-gray-800',
 }
 
 const DELIVERY_LABELS: Record<string, string> = {
@@ -54,7 +58,7 @@ const DELIVERY_LABELS: Record<string, string> = {
   post: 'Почта',
 }
 
-const ALL_STATUSES = ['pending', 'confirmed', 'shipped', 'delivered', 'cancelled']
+const ALL_STATUSES = ['confirmed', 'shipped', 'delivered', 'cancelled', 'return_requested', 'returned']
 
 function formatPrice(n: number) {
   return n.toLocaleString('ru-RU') + ' ₽'

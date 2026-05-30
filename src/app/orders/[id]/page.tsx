@@ -42,7 +42,7 @@ const STATUS_STEPS = [
   { key: 'delivered', label: 'Доставлен',   icon: 'home' },
 ]
 
-const STATUS_ORDER = ['confirmed', 'shipped', 'delivered', 'cancelled']
+const STATUS_ORDER = ['confirmed', 'shipped', 'delivered', 'cancelled', 'return_requested', 'returned']
 
 const DELIVERY_LABELS: Record<string, string> = {
   courier: 'Курьером',
@@ -63,6 +63,8 @@ export default function OrderTrackingPage() {
   const [order, setOrder] = useState<Order | null>(null)
   const fmt = usePrice()
   const [loading, setLoading] = useState(true)
+  const [returnLoading, setReturnLoading] = useState(false)
+  const [returnDone, setReturnDone] = useState(false)
   const [notFound, setNotFound] = useState(false)
 
   useEffect(() => {
@@ -97,6 +99,21 @@ export default function OrderTrackingPage() {
 
   const currentStepIndex = STATUS_ORDER.indexOf(order.status)
   const isCancelled = order.status === 'cancelled'
+  const isReturnRequested = order.status === 'return_requested'
+  const isReturned = order.status === 'returned'
+
+  const handleReturn = async () => {
+    if (!confirm('Вы уверены, что хотите оформить возврат?')) return
+    setReturnLoading(true)
+    try {
+      const res = await fetch(`${BACKEND}/api/orders/${orderId}/return`, { method: 'POST' })
+      if (res.ok) {
+        setOrder({ ...order, status: 'return_requested' })
+        setReturnDone(true)
+      }
+    } catch {}
+    setReturnLoading(false)
+  }
 
   return (
     <main className="max-w-lg mx-auto px-4 py-8 pb-16">
@@ -194,9 +211,33 @@ export default function OrderTrackingPage() {
         {order.comment && <p className="text-sm text-on-surface-variant mt-1">💬 {order.comment}</p>}
       </section>
 
-      <Link href="/" className="block w-full text-center bg-primary text-on-primary py-3 rounded font-medium hover:bg-primary-container transition-colors">
-        Продолжить покупки
-      </Link>
+      {/* Возврат */}
+      {isReturnRequested && (
+        <div className="mb-6 bg-orange-50 border border-orange-200 rounded-lg px-4 py-3 text-sm text-orange-800">
+          ↩️ <strong>Возврат запрошен.</strong> Мы свяжемся с вами по телефону для уточнения деталей.
+        </div>
+      )}
+      {isReturned && (
+        <div className="mb-6 bg-green-50 border border-green-200 rounded-lg px-4 py-3 text-sm text-green-800">
+          ✅ <strong>Возврат оформлен.</strong> Средства будут возвращены в течение 3-5 дней.
+        </div>
+      )}
+
+      <div className="flex flex-col gap-3">
+        <Link href="/" className="block w-full text-center bg-primary text-on-primary py-3 rounded font-medium hover:bg-primary-container transition-colors">
+          Продолжить покупки
+        </Link>
+
+        {order.status === 'delivered' && !returnDone && (
+          <button
+            onClick={handleReturn}
+            disabled={returnLoading}
+            className="w-full text-center border border-outline-variant text-on-surface py-3 rounded font-medium hover:bg-surface-container transition-colors text-sm disabled:opacity-50"
+          >
+            {returnLoading ? 'Оформление...' : '↩️ Запросить возврат'}
+          </button>
+        )}
+      </div>
     </main>
   )
 }
