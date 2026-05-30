@@ -61,7 +61,7 @@ export function CatalogPageClient({ gender }: CatalogPageClientProps) {
 
       try {
         const result = await getProducts({
-          category: gender,
+          category: gender === 'all' ? undefined : gender,
           subcategory: activeSubcategory ?? undefined,
           page: currentPage,
           limit: PAGE_LIMIT,

@@ -3,24 +3,24 @@
 import { useRouter } from 'next/navigation'
 import { useCartStore } from '@/store/cartStore'
 import { usePrice } from '@/lib/usePrice'
+import { useCurrencyStore } from '@/store/currencyStore'
 import { analytics } from '@/lib/analytics'
 
-const DELIVERY_COST = 299
+const DELIVERY_TJS = 40
 
 export function CartSummary() {
   const router = useRouter()
   const fmt = usePrice()
+  const rate = useCurrencyStore((s) => s.rate)
   const items = useCartStore((s) => s.items)
   const totalPrice = useCartStore((s) => s.getTotalPrice())
-  // getDiscountTotal = itemDiscount + promoDiscount — used only for finalTotal
   const discountTotal = useCartStore((s) => s.getDiscountTotal())
-  // itemDiscount is the item-level markdown only (no promo) — used for the "Скидка" display row
   const itemDiscount = useCartStore((s) => s.getItemDiscountTotal())
   const promoDiscount = useCartStore((s) => s.promoDiscount)
 
   const itemCount = items.length
-  // discountTotal already includes promoDiscount — deduct only once
-  const finalTotal = Math.max(0, totalPrice - discountTotal + DELIVERY_COST)
+  const subtotalTJS = Math.round(Math.max(0, totalPrice - discountTotal) * rate)
+  const finalTotalTJS = subtotalTJS + DELIVERY_TJS
 
   return (
     <section className="bg-surface-container-lowest p-5 border border-outline-variant rounded flex flex-col gap-3 mb-6">
@@ -47,7 +47,7 @@ export function CartSummary() {
 
       <div className="flex justify-between text-sm text-on-surface">
         <span>Доставка</span>
-        <span>{fmt(DELIVERY_COST)}</span>
+        <span>{DELIVERY_TJS} сом</span>
       </div>
 
       <hr className="border-outline-variant my-2" />
@@ -55,13 +55,13 @@ export function CartSummary() {
       <div className="flex justify-between items-end mb-4">
         <span className="font-headline font-bold text-lg">Итого</span>
         <span className="font-headline font-black text-2xl tracking-tight">
-          {fmt(finalTotal)}
+          {finalTotalTJS.toLocaleString('ru-RU')} сом
         </span>
       </div>
 
       <button
         disabled={itemCount === 0}
-        onClick={() => { analytics.checkoutStart(finalTotal); router.push('/checkout') }}
+        onClick={() => { analytics.checkoutStart(finalTotalTJS); router.push('/checkout') }}
         className="w-full bg-primary text-on-primary py-4 rounded font-headline font-bold uppercase tracking-wider text-sm hover:bg-inverse-surface transition-colors active:scale-[0.98] shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
       >
         ОФОРМИТЬ ЗАКАЗ

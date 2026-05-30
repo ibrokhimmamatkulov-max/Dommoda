@@ -8,10 +8,11 @@ import { CheckoutStepper } from '@/components/checkout/CheckoutStepper'
 import { DeliveryMethodSelector } from '@/components/checkout/DeliveryMethodSelector'
 import { useCartStore } from '@/store/cartStore'
 import { usePrice } from '@/lib/usePrice'
+import { useCurrencyStore } from '@/store/currencyStore'
 import type { CheckoutFormData } from '@/types'
 
 const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'https://backanddommoda.onrender.com'
-const DELIVERY_COST = 299
+const DELIVERY_TJS = 40
 
 export default function CheckoutPage() {
   const router = useRouter()
@@ -22,6 +23,7 @@ export default function CheckoutPage() {
   const promoCode = useCartStore((s) => s.promoCode)
   const clearCart = useCartStore((s) => s.clearCart)
   const fmt = usePrice()
+  const rate = useCurrencyStore((s) => s.rate)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -49,7 +51,7 @@ export default function CheckoutPage() {
 
   const totalPrice = getTotalPrice()
   const discountTotal = getDiscountTotal()
-  const finalTotal = Math.max(0, totalPrice - discountTotal + DELIVERY_COST)
+  const finalTotalTJS = Math.round(Math.max(0, totalPrice - discountTotal) * rate) + DELIVERY_TJS
 
   const onSubmit = async (data: CheckoutFormData) => {
     setIsSubmitting(true)
@@ -184,7 +186,7 @@ export default function CheckoutPage() {
             <span aria-hidden="true" className="material-symbols-outlined text-sm">
               payments
             </span>
-            <span className="font-bold text-lg">{fmt(finalTotal)}</span>
+            <span className="font-bold text-lg">{finalTotalTJS.toLocaleString('ru-RU')} сом</span>
           </div>
         </div>
 

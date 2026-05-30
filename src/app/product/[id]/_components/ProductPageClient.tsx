@@ -280,7 +280,7 @@ export function ProductPageClient({ id }: ProductPageClientProps) {
             </span>
             <div>
               <p className="font-body font-medium text-sm">
-                Доставка от 299 ₽ • 2-5 дней
+                Доставка 40 сом • до 2 дней
               </p>
               <p className="font-body text-xs text-outline mt-1">
                 Точная стоимость будет рассчитана при оформлении заказа.
