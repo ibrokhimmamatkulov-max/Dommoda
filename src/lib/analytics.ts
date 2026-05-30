@@ -2,12 +2,8 @@ const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'https://backanddommoda.o
 
 function getSessionId(): string {
   if (typeof window === 'undefined') return ''
-  let sid = sessionStorage.getItem('dommoda_sid')
-  if (!sid) {
-    sid = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`
-    sessionStorage.setItem('dommoda_sid', sid)
-  }
-  return sid
+  // Новый ID на каждую загрузку страницы — трекаем каждый визит
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`
 }
 
 async function track(event_type: string, page?: string, data?: Record<string, unknown>) {
