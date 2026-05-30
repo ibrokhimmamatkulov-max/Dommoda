@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useCartStore } from '@/store/cartStore'
-import { formatPrice } from '@/lib/formatPrice'
+import { usePrice } from '@/lib/usePrice'
 import type { CartItem as CartItemType } from '@/types'
 
 interface CartItemProps {
@@ -12,6 +12,7 @@ interface CartItemProps {
 export function CartItem({ item }: CartItemProps) {
   const { removeItem, updateQuantity } = useCartStore()
   const { product, selectedSize, selectedColor, quantity } = item
+  const fmt = usePrice()
 
   const handleDecrement = () => {
     if (quantity <= 1) {
@@ -97,11 +98,11 @@ export function CartItem({ item }: CartItemProps) {
           <div className="text-right">
             {product.priceOriginal != null && (
               <div className="text-xs text-outline line-through mb-0.5">
-                {formatPrice(product.priceOriginal * quantity)}
+                {fmt(product.priceOriginal * quantity)}
               </div>
             )}
             <div className="font-headline font-bold text-base text-primary">
-              {formatPrice(product.price * quantity)}
+              {fmt(product.price * quantity)}
             </div>
           </div>
         </div>

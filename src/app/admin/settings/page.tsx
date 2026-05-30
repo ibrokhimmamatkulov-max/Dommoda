@@ -26,6 +26,32 @@ export default function AdminSettingsPage(): React.JSX.Element {
   const [loading, setLoading] = useState(true)
   const [saveState, setSaveState] = useState<SaveState>('idle')
 
+  // Currency
+  const [rate, setRate] = useState<string>('0.11')
+  const [rateSave, setRateSave] = useState<SaveState>('idle')
+
+  useEffect(() => {
+    fetch(`${BACKEND}/api/settings/currency`)
+      .then((r) => r.json())
+      .then((d: { rub_to_tjs: number }) => setRate(String(d.rub_to_tjs)))
+      .catch(() => {})
+  }, [])
+
+  const handleRateSave = async () => {
+    setRateSave('saving')
+    try {
+      const res = await fetch('/api/admin/settings/currency', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rub_to_tjs: parseFloat(rate) }),
+      })
+      setRateSave(res.ok ? 'saved' : 'error')
+    } catch {
+      setRateSave('error')
+    }
+    setTimeout(() => setRateSave('idle'), 3000)
+  }
+
   useEffect(() => {
     fetch(`${BACKEND}/api/settings/banner`)
       .then((r) => r.json())
@@ -62,6 +88,38 @@ export default function AdminSettingsPage(): React.JSX.Element {
       <main className="flex-1 p-6">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-xl font-semibold text-on-surface mb-6">Настройки баннера</h1>
+
+          {/* Курс валюты */}
+          <div className="bg-surface-container-lowest border border-outline-variant rounded p-6 mb-6">
+            <h2 className="text-base font-semibold text-on-surface mb-1">Курс валюты</h2>
+            <p className="text-sm text-on-surface-variant mb-4">Цены на сайте показываются в сомони. Укажите актуальный курс: сколько сомони стоит 1 рубль.</p>
+            <div className="flex items-end gap-4">
+              <div className="flex flex-col gap-1 flex-1 max-w-xs">
+                <label className="text-sm font-medium text-on-surface-variant">1 RUB =</label>
+                <div className="flex items-center border border-outline-variant rounded focus-within:border-primary">
+                  <input
+                    type="number"
+                    step="0.001"
+                    min="0.001"
+                    value={rate}
+                    onChange={(e) => setRate(e.target.value)}
+                    className="flex-1 px-3 py-2 text-sm text-on-surface bg-transparent focus:outline-none"
+                  />
+                  <span className="px-3 py-2 text-sm text-on-surface-variant border-l border-outline-variant bg-surface-container">TJS</span>
+                </div>
+                <p className="text-xs text-on-surface-variant mt-1">
+                  Пример: если 1 руб = 0.11 сомони, товар за 5 000 руб будет стоить <strong>{Math.round(5000 * parseFloat(rate || '0'))} сом</strong>
+                </p>
+              </div>
+              <button
+                onClick={handleRateSave}
+                disabled={rateSave === 'saving'}
+                className="bg-primary text-on-primary text-sm font-medium py-2 px-5 rounded hover:bg-primary-container transition-colors disabled:opacity-50"
+              >
+                {rateSave === 'saving' ? 'Сохранение...' : rateSave === 'saved' ? '✓ Сохранено' : 'Сохранить'}
+              </button>
+            </div>
+          </div>
 
           {loading ? (
             <div className="text-sm text-on-surface-variant">Загрузка...</div>

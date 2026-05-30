@@ -10,7 +10,7 @@ import { getProductById } from '@/lib/api'
 import { analytics } from '@/lib/analytics'
 import { useCartStore } from '@/store/cartStore'
 import { useWishlistStore } from '@/store/wishlistStore'
-import { formatPrice } from '@/lib/formatPrice'
+import { usePrice } from '@/lib/usePrice'
 import type { Product } from '@/types'
 
 interface ProductPageClientProps {
@@ -52,6 +52,7 @@ export function ProductPageClient({ id }: ProductPageClientProps) {
   const addItem = useCartStore((s) => s.addItem)
   const isInWishlist = useWishlistStore((s) => (product ? s.isInWishlist(product.id) : false))
   const toggleWishlist = useWishlistStore((s) => s.toggle)
+  const fmt = usePrice()
 
   useEffect(() => {
     setIsLoading(true)
@@ -155,12 +156,12 @@ export function ProductPageClient({ id }: ProductPageClientProps) {
           {/* Price */}
           <div className="flex items-end gap-3 mb-6">
             <span className="font-headline text-3xl font-bold text-primary tracking-tight">
-              {formatPrice(product.price)}
+              {fmt(product.price)}
             </span>
             {product.priceOriginal != null && (
               <>
                 <span className="font-body text-lg text-outline line-through mb-1">
-                  {formatPrice(product.priceOriginal)}
+                  {fmt(product.priceOriginal)}
                 </span>
                 {product.discountPercent != null && (
                   <span className="bg-error text-on-error text-xs font-bold px-2 py-1 rounded mb-2">

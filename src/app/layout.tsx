@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { OrderStatusBar } from '@/components/order/OrderStatusBar'
+import { CurrencyInit } from '@/components/CurrencyInit'
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -30,6 +31,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased bg-background text-on-background">
         {children}
+        <CurrencyInit />
         <OrderStatusBar />
       </body>
     </html>

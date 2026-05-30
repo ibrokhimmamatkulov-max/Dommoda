@@ -2,13 +2,14 @@
 
 import { useRouter } from 'next/navigation'
 import { useCartStore } from '@/store/cartStore'
-import { formatPrice } from '@/lib/formatPrice'
+import { usePrice } from '@/lib/usePrice'
 import { analytics } from '@/lib/analytics'
 
 const DELIVERY_COST = 299
 
 export function CartSummary() {
   const router = useRouter()
+  const fmt = usePrice()
   const items = useCartStore((s) => s.items)
   const totalPrice = useCartStore((s) => s.getTotalPrice())
   // getDiscountTotal = itemDiscount + promoDiscount — used only for finalTotal
@@ -27,26 +28,26 @@ export function CartSummary() {
 
       <div className="flex justify-between text-sm text-on-surface">
         <span>Товары ({itemCount})</span>
-        <span>{formatPrice(totalPrice)}</span>
+        <span>{fmt(totalPrice)}</span>
       </div>
 
       {itemDiscount > 0 && (
         <div className="flex justify-between text-sm text-error font-medium">
           <span>Скидка</span>
-          <span>-{formatPrice(itemDiscount)}</span>
+          <span>-{fmt(itemDiscount)}</span>
         </div>
       )}
 
       {promoDiscount > 0 && (
         <div className="flex justify-between text-sm text-secondary">
           <span>Промокод</span>
-          <span className="text-error">-{formatPrice(promoDiscount)}</span>
+          <span className="text-error">-{fmt(promoDiscount)}</span>
         </div>
       )}
 
       <div className="flex justify-between text-sm text-on-surface">
         <span>Доставка</span>
-        <span>{formatPrice(DELIVERY_COST)}</span>
+        <span>{fmt(DELIVERY_COST)}</span>
       </div>
 
       <hr className="border-outline-variant my-2" />
@@ -54,7 +55,7 @@ export function CartSummary() {
       <div className="flex justify-between items-end mb-4">
         <span className="font-headline font-bold text-lg">Итого</span>
         <span className="font-headline font-black text-2xl tracking-tight">
-          {formatPrice(finalTotal)}
+          {fmt(finalTotal)}
         </span>
       </div>
 

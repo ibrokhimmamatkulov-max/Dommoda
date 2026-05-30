@@ -7,7 +7,7 @@ import { TopAppBar } from '@/components/layout/TopAppBar'
 import { CheckoutStepper } from '@/components/checkout/CheckoutStepper'
 import { DeliveryMethodSelector } from '@/components/checkout/DeliveryMethodSelector'
 import { useCartStore } from '@/store/cartStore'
-import { formatPrice } from '@/lib/formatPrice'
+import { usePrice } from '@/lib/usePrice'
 import type { CheckoutFormData } from '@/types'
 
 const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'https://backanddommoda.onrender.com'
@@ -21,6 +21,7 @@ export default function CheckoutPage() {
   const promoDiscount = useCartStore((s) => s.promoDiscount)
   const promoCode = useCartStore((s) => s.promoCode)
   const clearCart = useCartStore((s) => s.clearCart)
+  const fmt = usePrice()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -183,7 +184,7 @@ export default function CheckoutPage() {
             <span aria-hidden="true" className="material-symbols-outlined text-sm">
               payments
             </span>
-            <span className="font-bold text-lg">{formatPrice(finalTotal)}</span>
+            <span className="font-bold text-lg">{fmt(finalTotal)}</span>
           </div>
         </div>
 

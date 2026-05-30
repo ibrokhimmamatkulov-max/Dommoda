@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { BottomNavBar } from '@/components/layout/BottomNavBar'
 import { useAuthStore } from '@/store/authStore'
-import { formatPrice } from '@/lib/formatPrice'
+import { usePrice } from '@/lib/usePrice'
 
 const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'https://backanddommoda.onrender.com'
 
@@ -36,6 +36,7 @@ interface Order {
 export default function ProfilePage() {
   const router = useRouter()
   const { token, phone, name, logout } = useAuthStore()
+  const fmt = usePrice()
   const [orders, setOrders] = useState<Order[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -131,7 +132,7 @@ export default function ProfilePage() {
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <p className="font-semibold text-sm">{formatPrice(order.total)}</p>
+                  <p className="font-semibold text-sm">{fmt(order.total)}</p>
                   <span className="material-symbols-outlined text-[18px] text-on-surface-variant">chevron_right</span>
                 </div>
               </Link>

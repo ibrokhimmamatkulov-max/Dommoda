@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useWishlistStore } from '@/store/wishlistStore'
-import { formatPrice } from '@/lib/formatPrice'
+import { usePrice } from '@/lib/usePrice'
 import type { Product } from '@/types'
 
 interface ProductCardProps {
@@ -13,6 +13,7 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const isInWishlist = useWishlistStore((s) => s.isInWishlist(product.id))
   const toggle = useWishlistStore((s) => s.toggle)
+  const fmt = usePrice()
 
   const handleWishlistClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -68,11 +69,11 @@ export function ProductCard({ product }: ProductCardProps) {
           <h3 className="text-sm text-on-surface line-clamp-2 mb-2">{product.name}</h3>
           <div className="flex items-center gap-2 mt-auto">
             <span className="font-headline font-bold text-sm text-primary">
-              {formatPrice(product.price)}
+              {fmt(product.price)}
             </span>
             {product.priceOriginal != null && (
               <span className="font-body text-xs text-outline line-through">
-                {formatPrice(product.priceOriginal)}
+                {fmt(product.priceOriginal)}
               </span>
             )}
           </div>

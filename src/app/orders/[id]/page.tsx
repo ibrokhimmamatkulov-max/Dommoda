@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { formatPrice } from '@/lib/formatPrice'
+import { usePrice } from '@/lib/usePrice'
 
 const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'https://backanddommoda.onrender.com'
 
@@ -61,6 +61,7 @@ export default function OrderTrackingPage() {
   const params = useParams()
   const orderId = params.id as string
   const [order, setOrder] = useState<Order | null>(null)
+  const fmt = usePrice()
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
 
@@ -157,7 +158,7 @@ export default function OrderTrackingPage() {
                 <p className="text-sm text-on-surface leading-snug">{item.product_name}</p>
                 <p className="text-xs text-on-surface-variant mt-0.5">{item.size} · {item.color} · {item.quantity} шт.</p>
               </div>
-              <p className="text-sm font-semibold text-on-surface shrink-0">{formatPrice(item.unit_price * item.quantity)}</p>
+              <p className="text-sm font-semibold text-on-surface shrink-0">{fmt(item.unit_price * item.quantity)}</p>
             </div>
           ))}
         </div>
@@ -167,17 +168,17 @@ export default function OrderTrackingPage() {
       <section className="mb-6 bg-surface-container rounded-lg px-4 py-3 flex flex-col gap-2">
         <div className="flex justify-between text-sm">
           <span className="text-on-surface-variant">Товары</span>
-          <span>{formatPrice(order.subtotal)}</span>
+          <span>{fmt(order.subtotal)}</span>
         </div>
         {order.promo_discount > 0 && (
           <div className="flex justify-between text-sm text-primary">
             <span>Промокод {order.promo_code}</span>
-            <span>−{formatPrice(order.promo_discount)}</span>
+            <span>−{fmt(order.promo_discount)}</span>
           </div>
         )}
         <div className="flex justify-between text-base font-bold border-t border-outline-variant pt-2 mt-1">
           <span>Итого</span>
-          <span>{formatPrice(order.total)}</span>
+          <span>{fmt(order.total)}</span>
         </div>
       </section>
 
