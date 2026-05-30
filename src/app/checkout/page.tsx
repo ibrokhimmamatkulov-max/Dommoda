@@ -70,13 +70,13 @@ export default function CheckoutPage() {
         body: JSON.stringify({
           delivery_method: data.deliveryMethod,
           city: data.city,
-          street: data.street,
-          building: data.building,
-          apartment: data.apartment ?? null,
-          zip_code: data.zip || '000000',
+          street: data.street || null,
+          building: data.building || null,
+          apartment: data.apartment || null,
+          zip_code: data.zip || null,
           recipient_name: data.recipientName,
           phone: `+992${data.phone}`,
-          email: data.email,
+          email: data.email || null,
           comment: data.comment ?? null,
           items: orderItems,
           promo_code: promoCode,
@@ -153,11 +153,8 @@ export default function CheckoutPage() {
                   type="text"
                   placeholder="Улица"
                   className="form-input"
-                  {...register('street', { required: 'Укажите улицу' })}
+                  {...register('street')}
                 />
-                {errors.street != null && (
-                  <p className="text-error text-xs mt-1">{errors.street.message}</p>
-                )}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -170,11 +167,8 @@ export default function CheckoutPage() {
                     type="text"
                     placeholder="Дом"
                     className="form-input"
-                    {...register('building', { required: 'Укажите дом' })}
+                    {...register('building')}
                   />
-                  {errors.building != null && (
-                    <p className="text-error text-xs mt-1">{errors.building.message}</p>
-                  )}
                 </div>
                 <div>
                   <label htmlFor="apartment" className="sr-only">
@@ -268,7 +262,6 @@ export default function CheckoutPage() {
                   placeholder="Email"
                   className="form-input"
                   {...register('email', {
-                    required: 'Укажите email',
                     pattern: {
                       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                       message: 'Некорректный email',
