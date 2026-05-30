@@ -69,14 +69,14 @@ export default function CheckoutPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           delivery_method: data.deliveryMethod,
-          city: data.city,
-          street: data.street || null,
-          building: data.building || null,
-          apartment: data.apartment || null,
-          zip_code: data.zip || null,
-          recipient_name: data.recipientName,
+          city: null,
+          street: null,
+          building: null,
+          apartment: null,
+          zip_code: null,
+          recipient_name: null,
           phone: `+992${data.phone}`,
-          email: data.email || null,
+          email: null,
           comment: data.comment ?? null,
           items: orderItems,
           promo_code: promoCode,
@@ -122,156 +122,27 @@ export default function CheckoutPage() {
             />
           </section>
 
-          {/* Delivery address */}
+          {/* Recipient — только телефон */}
           <section>
             <h2 className="font-headline font-bold uppercase tracking-widest text-lg mb-6 text-primary border-b border-outline-variant pb-2">
-              Адрес доставки
+              Контакт для связи
             </h2>
-            <div className="grid grid-cols-1 gap-6">
-              <div>
-                <label htmlFor="city" className="sr-only">
-                  Город
-                </label>
-                <input
-                  id="city"
-                  type="text"
-                  placeholder="Город"
-                  className="form-input"
-                  {...register('city', { required: 'Укажите город' })}
-                />
-                {errors.city != null && (
-                  <p className="text-error text-xs mt-1">{errors.city.message}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="street" className="sr-only">
-                  Улица
-                </label>
-                <input
-                  id="street"
-                  type="text"
-                  placeholder="Улица"
-                  className="form-input"
-                  {...register('street')}
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="building" className="sr-only">
-                    Дом
-                  </label>
-                  <input
-                    id="building"
-                    type="text"
-                    placeholder="Дом"
-                    className="form-input"
-                    {...register('building')}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="apartment" className="sr-only">
-                    Квартира
-                  </label>
-                  <input
-                    id="apartment"
-                    type="text"
-                    placeholder="Квартира"
-                    className="form-input"
-                    {...register('apartment')}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="zip" className="sr-only">
-                  Индекс
-                </label>
-                <input
-                  id="zip"
-                  type="text"
-                  placeholder="Индекс"
-                  className="form-input"
-                  {...register('zip')}
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Recipient */}
-          <section>
-            <h2 className="font-headline font-bold uppercase tracking-widest text-lg mb-6 text-primary border-b border-outline-variant pb-2">
-              Получатель
-            </h2>
-            <div className="grid grid-cols-1 gap-6">
-              <div>
-                <label htmlFor="recipientName" className="sr-only">
-                  Имя и фамилия
-                </label>
-                <input
-                  id="recipientName"
-                  type="text"
-                  placeholder="Имя и фамилия"
-                  className="form-input"
-                  {...register('recipientName', {
-                    required: 'Укажите имя и фамилию',
-                    minLength: { value: 2, message: 'Минимум 2 символа' },
-                  })}
-                />
-                {errors.recipientName != null && (
-                  <p className="text-error text-xs mt-1">
-                    {errors.recipientName.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="relative">
-                <label htmlFor="phone" className="sr-only">
-                  Телефон
-                </label>
-                <span className="absolute left-0 top-3 text-primary text-base font-medium">
-                  +992
-                </span>
-                <input
-                  id="phone"
-                  type="tel"
-                  placeholder="000 000 000"
-                  className="form-input pl-12"
-                  {...register('phone', {
-                    required: 'Укажите телефон',
-                    minLength: { value: 9, message: 'Минимум 9 цифр' },
-                    pattern: {
-                      value: /^[0-9\s\-()]+$/,
-                      message: 'Только цифры',
-                    },
-                  })}
-                />
-                {errors.phone != null && (
-                  <p className="text-error text-xs mt-1">{errors.phone.message}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="email" className="sr-only">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="Email"
-                  className="form-input"
-                  {...register('email', {
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: 'Некорректный email',
-                    },
-                  })}
-                />
-                {errors.email != null && (
-                  <p className="text-error text-xs mt-1">{errors.email.message}</p>
-                )}
-              </div>
+            <div className="relative">
+              <span className="absolute left-0 top-3 text-primary text-base font-medium">+992</span>
+              <input
+                id="phone"
+                type="tel"
+                placeholder="000 000 000"
+                className="form-input pl-12"
+                {...register('phone', {
+                  required: 'Укажите телефон',
+                  minLength: { value: 9, message: 'Минимум 9 цифр' },
+                  pattern: { value: /^[0-9\s\-()]+$/, message: 'Только цифры' },
+                })}
+              />
+              {errors.phone != null && (
+                <p className="text-error text-xs mt-1">{errors.phone.message}</p>
+              )}
             </div>
           </section>
 
