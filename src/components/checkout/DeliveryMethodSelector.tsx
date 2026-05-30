@@ -6,20 +6,14 @@ const DELIVERY_OPTIONS: DeliveryOption[] = [
   {
     id: 'courier',
     label: 'Курьером',
-    price: 'от 299 ₽',
-    description: '2-5 рабочих дней',
+    price: 'Бесплатно',
+    description: 'Максимум 2 дня',
   },
   {
     id: 'pickup',
     label: 'Пункт выдачи',
-    price: 'от 0 ₽',
-    description: 'Более 3000 точек',
-  },
-  {
-    id: 'post',
-    label: 'Почта России',
-    price: 'от 199 ₽',
-    description: '5-14 дней',
+    price: 'Бесплатно',
+    description: 'Душанбе, Дехлави 1',
   },
 ]
 
