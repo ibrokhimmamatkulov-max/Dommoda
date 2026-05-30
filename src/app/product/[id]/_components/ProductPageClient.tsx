@@ -17,6 +17,39 @@ interface ProductPageClientProps {
   id: string
 }
 
+function ProductAttributes({ description }: { description: string }) {
+  const lines = description
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean)
+
+  const attrs = lines
+    .map((line) => {
+      const sep = line.indexOf(':')
+      if (sep === -1) return null
+      return { label: line.slice(0, sep).trim(), value: line.slice(sep + 1).trim() }
+    })
+    .filter((a): a is { label: string; value: string } => a !== null && a.value !== '')
+
+  if (attrs.length === 0) {
+    return <p className="text-sm text-on-surface-variant mt-2 mb-4">{description}</p>
+  }
+
+  return (
+    <div className="mt-3 mb-4 flex flex-col gap-3">
+      {attrs.map(({ label, value }) => (
+        <div key={label} className="flex items-baseline gap-0">
+          <span className="text-sm text-outline flex-shrink-0">{label}</span>
+          <span className="flex-1 border-b border-dotted border-outline-variant mx-2 mb-[3px] min-w-[12px]" />
+          <span className="text-sm text-on-surface font-medium flex-shrink-0 text-right max-w-[55%]">
+            {value}
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function StarRating({ rating }: { rating: number }) {
   const filled = Math.floor(rating)
   return (
@@ -213,16 +246,16 @@ export function ProductPageClient({ id }: ProductPageClientProps) {
           )}
         </section>
 
-        {/* Description + Delivery */}
+        {/* О товаре + Delivery */}
         <section className="px-4 mt-8 border-t border-outline-variant pt-6">
-          {product.description != null && (
+          {product.description != null && product.description.trim() !== '' && (
             <>
               <button
                 onClick={() => setDescriptionOpen((v) => !v)}
                 className="w-full flex justify-between items-center py-2 group"
                 aria-expanded={descriptionOpen}
               >
-                <span className="font-headline font-bold text-lg">Описание</span>
+                <span className="font-headline font-bold text-lg">О товаре</span>
                 <span
                   aria-hidden="true"
                   className="material-symbols-outlined text-outline group-hover:text-primary transition-colors"
@@ -232,9 +265,7 @@ export function ProductPageClient({ id }: ProductPageClientProps) {
               </button>
 
               {descriptionOpen && (
-                <p className="text-sm text-on-surface-variant mt-2 mb-4">
-                  {product.description}
-                </p>
+                <ProductAttributes description={product.description} />
               )}
             </>
           )}
