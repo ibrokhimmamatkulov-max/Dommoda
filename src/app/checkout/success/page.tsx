@@ -1,12 +1,16 @@
 'use client'
 
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
 function SuccessContent() {
   const searchParams = useSearchParams()
   const orderId = searchParams.get('order')
+
+  useEffect(() => {
+    if (orderId) localStorage.setItem('dommoda_active_order', orderId)
+  }, [orderId])
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-6 text-center gap-5">
