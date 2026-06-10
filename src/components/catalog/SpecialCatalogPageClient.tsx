@@ -10,13 +10,14 @@ import { getProducts } from '@/lib/api'
 import { analytics } from '@/lib/analytics'
 import type { Product } from '@/types'
 
-const PAGE_LIMIT = 24
+const DEFAULT_PAGE_LIMIT = 24
 
 interface SpecialCatalogPageClientProps {
   title: string
   hasDiscount?: boolean
   defaultSort?: 'popular' | 'price_asc' | 'price_desc' | 'new'
   analyticsPath: string
+  pageLimit?: number
 }
 
 export function SpecialCatalogPageClient({
@@ -24,6 +25,7 @@ export function SpecialCatalogPageClient({
   hasDiscount,
   defaultSort = 'popular',
   analyticsPath,
+  pageLimit = DEFAULT_PAGE_LIMIT,
 }: SpecialCatalogPageClientProps) {
   const [products, setProducts] = useState<Product[]>([])
   const [total, setTotal] = useState(0)
@@ -54,7 +56,7 @@ export function SpecialCatalogPageClient({
           has_discount: hasDiscount,
           sort: defaultSort,
           page: currentPage,
-          limit: PAGE_LIMIT,
+          limit: pageLimit,
         })
 
         if (reset) {

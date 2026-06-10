@@ -11,6 +11,7 @@ export default function NewPage() {
       title="НОВИНКИ"
       defaultSort="new"
       analyticsPath="/catalog/new"
+      pageLimit={100}
     />
   )
 }
