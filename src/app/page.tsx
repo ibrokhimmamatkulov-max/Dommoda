@@ -18,7 +18,7 @@ const HOME_CATEGORIES = [
   { href: '/catalog/men', label: 'Мужчинам' },
   { href: '/catalog/kids', label: 'Детям' },
   { href: '/catalog/sport', label: 'Спорт' },
-  { href: '#', label: 'Бренды' },
+  { href: '/catalog/brands', label: 'Бренды' },
 ]
 
 export default function HomePage() {

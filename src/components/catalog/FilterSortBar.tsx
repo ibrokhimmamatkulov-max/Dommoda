@@ -5,6 +5,7 @@ interface FilterSortBarProps {
   sortLabel: string
   total: number
   shown: number
+  onFilterClick?: () => void
 }
 
 export function FilterSortBar({
@@ -12,19 +13,22 @@ export function FilterSortBar({
   sortLabel,
   total,
   shown,
+  onFilterClick,
 }: FilterSortBarProps) {
-  const handleSortClick = () => {
-    window.alert('Сортировка — coming soon')
-  }
-
   return (
     <div>
       <section className="flex items-center justify-between px-4 py-3 bg-surface-bright border-b border-surface-container text-sm font-label">
-        <div className="flex items-center gap-1 text-on-surface-variant font-medium">
-          <span>Фильтры ({activeFiltersCount})</span>
-        </div>
         <button
-          onClick={handleSortClick}
+          onClick={onFilterClick}
+          className="flex items-center gap-1 text-on-surface-variant font-medium hover:text-primary transition-colors"
+        >
+          <span className="material-symbols-outlined text-sm">tune</span>
+          <span>
+            Фильтры{activeFiltersCount > 0 ? ` (${activeFiltersCount})` : ''}
+          </span>
+        </button>
+        <button
+          onClick={onFilterClick}
           className="flex items-center gap-1 text-on-surface-variant font-medium hover:text-primary transition-colors"
         >
           <span>Сортировка: {sortLabel}</span>

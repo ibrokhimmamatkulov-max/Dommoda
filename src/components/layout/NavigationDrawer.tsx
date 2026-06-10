@@ -16,7 +16,7 @@ const DRAWER_CATEGORIES: DrawerCategory[] = [
   { href: '/catalog/men', icon: 'male', label: 'Мужчинам' },
   { href: '/catalog/kids', icon: 'child_care', label: 'Детям' },
   { href: '/catalog/sport', icon: 'sports_basketball', label: 'Спорт' },
-  { href: '#', icon: 'sell', label: 'Бренды' },
+  { href: '/catalog/brands', icon: 'sell', label: 'Бренды' },
 ]
 
 interface NavigationDrawerProps {
