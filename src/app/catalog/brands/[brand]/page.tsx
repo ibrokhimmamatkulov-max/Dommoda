@@ -1,21 +1,23 @@
 import { SpecialCatalogPageClient } from '@/components/catalog/SpecialCatalogPageClient'
 
 interface BrandPageProps {
-  params: { brand: string }
+  params: Promise<{ brand: string }>
 }
 
-export function generateMetadata({ params }: BrandPageProps) {
-  const name = decodeURIComponent(params.brand)
+export async function generateMetadata({ params }: BrandPageProps) {
+  const { brand } = await params
+  const name = decodeURIComponent(brand)
   return { title: `${name} — DOMMODA` }
 }
 
-export default function BrandPage({ params }: BrandPageProps) {
-  const name = decodeURIComponent(params.brand)
+export default async function BrandPage({ params }: BrandPageProps) {
+  const { brand } = await params
+  const name = decodeURIComponent(brand)
   return (
     <SpecialCatalogPageClient
       title={name.toUpperCase()}
       brand={name}
-      analyticsPath={`/catalog/brands/${params.brand}`}
+      analyticsPath={`/catalog/brands/${brand}`}
     />
   )
 }
