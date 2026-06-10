@@ -6,14 +6,14 @@ const DELIVERY_OPTIONS: DeliveryOption[] = [
   {
     id: 'courier',
     label: 'Курьером',
-    price: 'Бесплатно',
-    description: 'Максимум 2 дня',
+    price: '40 сом',
+    description: 'Доставим за 2–3 дня',
   },
   {
     id: 'pickup',
     label: 'Пункт выдачи',
     price: 'Бесплатно',
-    description: 'Душанбе, Дехлави 1',
+    description: 'Душанбе, Дехлави 1 · товар будет через 2–3 дня',
   },
 ]
 

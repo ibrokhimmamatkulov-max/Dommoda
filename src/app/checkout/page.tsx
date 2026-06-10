@@ -51,7 +51,8 @@ export default function CheckoutPage() {
 
   const totalPrice = getTotalPrice()
   const discountTotal = getDiscountTotal()
-  const finalTotalTJS = Math.round(Math.max(0, totalPrice - discountTotal) * rate) + DELIVERY_TJS
+  const deliveryCost = deliveryMethod === 'courier' ? DELIVERY_TJS : 0
+  const finalTotalTJS = Math.round(Math.max(0, totalPrice - discountTotal) * rate) + deliveryCost
 
   const onSubmit = async (data: CheckoutFormData) => {
     setIsSubmitting(true)
