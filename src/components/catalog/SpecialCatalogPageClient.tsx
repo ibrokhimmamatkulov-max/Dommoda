@@ -106,7 +106,7 @@ export function SpecialCatalogPageClient({
     <>
       <TopAppBar variant="catalog" title={title} />
 
-      <main className="pb-20">
+      <main className="pb-nav">
         <FilterSortBar
           activeFiltersCount={activeFiltersCount}
           sortLabel={SORT_LABELS[filters.sort]}

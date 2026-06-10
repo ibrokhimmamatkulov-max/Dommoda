@@ -80,7 +80,17 @@
   }
 
   .pb-safe {
-    padding-bottom: env(safe-area-inset-bottom, 0.75rem);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* padding-bottom that clears the fixed bottom nav (3.5rem) + iOS home indicator */
+  .pb-nav {
+    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* padding-top that clears the fixed top bar (3.5rem) + iOS notch */
+  .pt-header {
+    padding-top: calc(3.5rem + env(safe-area-inset-top, 0px));
   }
 }
 

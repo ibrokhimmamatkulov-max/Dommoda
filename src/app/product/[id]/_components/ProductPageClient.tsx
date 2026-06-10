@@ -161,7 +161,7 @@ export function ProductPageClient({ id }: ProductPageClientProps) {
     <>
       <TopAppBar variant="product" productId={product.id} />
 
-      <main className="bg-background pb-32 pt-14">
+      <main className="bg-background pb-32 pt-header">
         {/* Image carousel */}
         <ProductImageCarousel
           images={product.images}

@@ -112,7 +112,7 @@ export function CatalogPageClient({ gender }: CatalogPageClientProps) {
     <>
       <TopAppBar variant="catalog" title={title} />
 
-      <main className="pb-20">
+      <main className="pb-nav">
         {categoryData != null && (
           <CategoryChips
             variant="catalog"

@@ -21,7 +21,7 @@ export default function BrandsPage() {
     <>
       <TopAppBar variant="catalog" title="БРЕНДЫ" />
 
-      <main className="pb-20 pt-2">
+      <main className="pb-nav pt-2">
         {isLoading ? (
           <div className="grid grid-cols-2 gap-3 p-4">
             {Array.from({ length: 12 }).map((_, i) => (

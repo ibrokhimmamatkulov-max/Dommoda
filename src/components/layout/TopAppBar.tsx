@@ -71,38 +71,41 @@ function HomeAppBar({ onMenuClick }: { onMenuClick: () => void }) {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-14 bg-surface-container-lowest border-b border-outline-variant transition-transform duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant transition-transform duration-300 ${
         isHidden ? '-translate-y-full' : 'translate-y-0'
       }`}
+      style={{ paddingTop: 'env(safe-area-inset-top)' }}
     >
-      <button
-        aria-label="Menu"
-        onClick={onMenuClick}
-        className="text-primary hover:opacity-70 transition-opacity p-2 -ml-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-fixed"
-      >
-        <span aria-hidden="true" className="material-symbols-outlined">
-          menu
-        </span>
-      </button>
-      <div className="text-xl font-black tracking-tighter text-primary font-headline select-none">
-        DOMMODA
-      </div>
-      <div className="flex items-center gap-2">
-        <Link href="/search" aria-label="Поиск">
-          <span className="flex text-primary hover:opacity-70 transition-opacity p-2 rounded-full">
-            <span aria-hidden="true" className="material-symbols-outlined">
-              search
-            </span>
+      <div className="flex justify-between items-center px-4 h-14">
+        <button
+          aria-label="Menu"
+          onClick={onMenuClick}
+          className="text-primary hover:opacity-70 transition-opacity p-2 -ml-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-fixed"
+        >
+          <span aria-hidden="true" className="material-symbols-outlined">
+            menu
           </span>
-        </Link>
-        <Link href="/cart" aria-label="Корзина" className="relative">
-          <span className="flex text-primary hover:opacity-70 transition-opacity p-2 -mr-2 rounded-full">
-            <span aria-hidden="true" className="material-symbols-outlined">
-              shopping_bag
+        </button>
+        <div className="text-xl font-black tracking-tighter text-primary font-headline select-none">
+          DOMMODA
+        </div>
+        <div className="flex items-center gap-2">
+          <Link href="/search" aria-label="Поиск">
+            <span className="flex text-primary hover:opacity-70 transition-opacity p-2 rounded-full">
+              <span aria-hidden="true" className="material-symbols-outlined">
+                search
+              </span>
             </span>
-            <CartBadge count={totalCount} />
-          </span>
-        </Link>
+          </Link>
+          <Link href="/cart" aria-label="Корзина" className="relative">
+            <span className="flex text-primary hover:opacity-70 transition-opacity p-2 -mr-2 rounded-full">
+              <span aria-hidden="true" className="material-symbols-outlined">
+                shopping_bag
+              </span>
+              <CartBadge count={totalCount} />
+            </span>
+          </Link>
+        </div>
       </div>
     </header>
   )
@@ -111,32 +114,22 @@ function HomeAppBar({ onMenuClick }: { onMenuClick: () => void }) {
 function CatalogAppBar({ title }: { title: string }) {
   const router = useRouter()
   return (
-    <header className="w-full top-0 sticky z-50 flex items-center justify-between px-4 h-14 bg-surface-container-lowest border-b border-outline-variant">
-      <button
-        aria-label="Go back"
-        onClick={() => router.back()}
-        className="text-primary hover:opacity-80 transition-opacity p-2 -ml-2 active:scale-95"
-      >
-        <span className="material-symbols-outlined">arrow_back</span>
-      </button>
-      <h1 className="font-headline text-base font-bold uppercase tracking-tight text-primary flex-1 text-center">
-        {title}
-      </h1>
-      <div className="flex items-center gap-1">
+    <header
+      className="w-full top-0 sticky z-50 bg-surface-container-lowest border-b border-outline-variant"
+      style={{ paddingTop: 'env(safe-area-inset-top)' }}
+    >
+      <div className="flex items-center justify-between px-4 h-14">
         <button
-          aria-label="Sort"
-          onClick={() => window.alert('Сортировка — coming soon')}
-          className="text-primary hover:opacity-80 transition-opacity p-2 active:scale-95"
+          aria-label="Go back"
+          onClick={() => router.back()}
+          className="text-primary hover:opacity-80 transition-opacity p-2 -ml-2 active:scale-95"
         >
-          <span className="material-symbols-outlined">sort</span>
+          <span className="material-symbols-outlined">arrow_back</span>
         </button>
-        <button
-          aria-label="Filter"
-          onClick={() => window.alert('Фильтры — coming soon')}
-          className="text-primary hover:opacity-80 transition-opacity p-2 -mr-2 active:scale-95"
-        >
-          <span className="material-symbols-outlined">tune</span>
-        </button>
+        <h1 className="font-headline text-base font-bold uppercase tracking-tight text-primary flex-1 text-center">
+          {title}
+        </h1>
+        <div className="w-10" />
       </div>
     </header>
   )
@@ -150,43 +143,48 @@ function ProductAppBar({ productId }: { productId?: string }) {
   const toggleWishlist = useWishlistStore((s) => s.toggle)
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-14 bg-surface-container-lowest border-b border-outline-variant">
-      <button
-        aria-label="Go back"
-        onClick={() => router.back()}
-        className="hover:opacity-70 transition-opacity active:scale-95 p-2 -ml-2"
-      >
-        <span className="material-symbols-outlined text-primary">arrow_back</span>
-      </button>
-      <div className="text-xl font-black tracking-tighter text-primary font-headline select-none">
-        DOMMODA
-      </div>
-      <div className="flex items-center gap-2">
+    <header
+      className="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant"
+      style={{ paddingTop: 'env(safe-area-inset-top)' }}
+    >
+      <div className="flex justify-between items-center px-4 h-14">
         <button
-          aria-label="Share"
-          onClick={() => {
-            if (typeof navigator !== 'undefined' && navigator.share) {
-              navigator.share({ url: window.location.href }).catch(() => null)
-            }
-          }}
-          className="hover:opacity-70 transition-opacity active:scale-95 p-2"
+          aria-label="Go back"
+          onClick={() => router.back()}
+          className="hover:opacity-70 transition-opacity active:scale-95 p-2 -ml-2"
         >
-          <span className="material-symbols-outlined text-primary">share</span>
+          <span className="material-symbols-outlined text-primary">arrow_back</span>
         </button>
-        <button
-          aria-label={isInWishlist ? 'Remove from favorites' : 'Add to favorites'}
-          onClick={() => productId != null && toggleWishlist(productId)}
-          className="hover:opacity-70 transition-opacity active:scale-95 p-2 -mr-2"
-        >
-          <span
-            className="material-symbols-outlined text-primary"
-            style={
-              isInWishlist ? { fontVariationSettings: "'FILL' 1" } : undefined
-            }
+        <div className="text-xl font-black tracking-tighter text-primary font-headline select-none">
+          DOMMODA
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            aria-label="Share"
+            onClick={() => {
+              if (typeof navigator !== 'undefined' && navigator.share) {
+                navigator.share({ url: window.location.href }).catch(() => null)
+              }
+            }}
+            className="hover:opacity-70 transition-opacity active:scale-95 p-2"
           >
-            {isInWishlist ? 'favorite' : 'favorite_border'}
-          </span>
-        </button>
+            <span className="material-symbols-outlined text-primary">share</span>
+          </button>
+          <button
+            aria-label={isInWishlist ? 'Remove from favorites' : 'Add to favorites'}
+            onClick={() => productId != null && toggleWishlist(productId)}
+            className="hover:opacity-70 transition-opacity active:scale-95 p-2 -mr-2"
+          >
+            <span
+              className="material-symbols-outlined text-primary"
+              style={
+                isInWishlist ? { fontVariationSettings: "'FILL' 1" } : undefined
+              }
+            >
+              {isInWishlist ? 'favorite' : 'favorite_border'}
+            </span>
+          </button>
+        </div>
       </div>
     </header>
   )
@@ -209,23 +207,28 @@ function CartAppBar({
       : 'товаров'
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-14 bg-surface-container-lowest border-b border-outline-variant">
-      <button
-        aria-label="Go back"
-        onClick={() => router.back()}
-        className="text-primary hover:opacity-70 transition-opacity active:scale-95 p-2 -ml-2"
-      >
-        <span className="material-symbols-outlined">arrow_back</span>
-      </button>
-      <h1 className="font-headline font-black text-base text-primary uppercase tracking-tight">
-        КОРЗИНА ({itemCount} {pluralLabel})
-      </h1>
-      <button
-        onClick={onClear}
-        className="text-primary hover:opacity-70 transition-opacity font-body text-sm font-medium"
-      >
-        Очистить
-      </button>
+    <header
+      className="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant"
+      style={{ paddingTop: 'env(safe-area-inset-top)' }}
+    >
+      <div className="flex justify-between items-center px-4 h-14">
+        <button
+          aria-label="Go back"
+          onClick={() => router.back()}
+          className="text-primary hover:opacity-70 transition-opacity active:scale-95 p-2 -ml-2"
+        >
+          <span className="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h1 className="font-headline font-black text-base text-primary uppercase tracking-tight">
+          КОРЗИНА ({itemCount} {pluralLabel})
+        </h1>
+        <button
+          onClick={onClear}
+          className="text-primary hover:opacity-70 transition-opacity font-body text-sm font-medium"
+        >
+          Очистить
+        </button>
+      </div>
     </header>
   )
 }
@@ -233,22 +236,27 @@ function CartAppBar({
 function CheckoutAppBar() {
   const router = useRouter()
   return (
-    <header className="sticky top-0 z-50 flex justify-between items-center w-full px-4 h-14 bg-surface border-b border-outline-variant">
-      <button
-        aria-label="Go back"
-        onClick={() => router.back()}
-        className="p-2 -ml-2"
-      >
-        <span className="material-symbols-outlined">arrow_back</span>
-      </button>
-      <h1 className="text-center font-bold tracking-widest text-sm flex-1">
-        ОФОРМЛЕНИЕ ЗАКАЗА
-      </h1>
-      <Link href="/cart">
-        <span className="flex p-2 -mr-2">
-          <span className="material-symbols-outlined">shopping_bag</span>
-        </span>
-      </Link>
+    <header
+      className="sticky top-0 z-50 w-full bg-surface border-b border-outline-variant"
+      style={{ paddingTop: 'env(safe-area-inset-top)' }}
+    >
+      <div className="flex justify-between items-center w-full px-4 h-14">
+        <button
+          aria-label="Go back"
+          onClick={() => router.back()}
+          className="p-2 -ml-2"
+        >
+          <span className="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h1 className="text-center font-bold tracking-widest text-sm flex-1">
+          ОФОРМЛЕНИЕ ЗАКАЗА
+        </h1>
+        <Link href="/cart">
+          <span className="flex p-2 -mr-2">
+            <span className="material-symbols-outlined">shopping_bag</span>
+          </span>
+        </Link>
+      </div>
     </header>
   )
 }

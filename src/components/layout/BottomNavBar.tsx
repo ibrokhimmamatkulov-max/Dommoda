@@ -50,8 +50,8 @@ export function BottomNavBar() {
   return (
     <nav
       aria-label="Bottom Navigation"
-      className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest border-t border-outline-variant pb-safe"
-      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0.75rem)' }}
+      className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest border-t border-outline-variant"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
       {NAV_ITEMS.map((item) => {
         const active = isActive(item)

@@ -51,7 +51,7 @@ export default function HomePage() {
         onClose={() => setDrawerOpen(false)}
       />
 
-      <main className="w-full max-w-lg mx-auto pt-14 pb-20">
+      <main className="w-full max-w-lg mx-auto pt-header pb-nav">
         {banner != null && <HeroBanner banner={banner} />}
 
         <CategoryChips variant="home" categories={HOME_CATEGORIES} />
