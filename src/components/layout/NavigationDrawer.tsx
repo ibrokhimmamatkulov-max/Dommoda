@@ -10,6 +10,8 @@ interface DrawerCategory {
 }
 
 const DRAWER_CATEGORIES: DrawerCategory[] = [
+  { href: '/catalog/sale', icon: 'local_offer', label: 'Акции' },
+  { href: '/catalog/new', icon: 'new_releases', label: 'Новинки' },
   { href: '/catalog/women', icon: 'female', label: 'Женщинам' },
   { href: '/catalog/men', icon: 'male', label: 'Мужчинам' },
   { href: '/catalog/kids', icon: 'child_care', label: 'Детям' },

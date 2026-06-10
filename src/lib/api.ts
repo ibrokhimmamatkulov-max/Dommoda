@@ -6,6 +6,7 @@ export async function getProducts(params?: {
   category?: string
   subcategory?: string
   sort?: 'popular' | 'price_asc' | 'price_desc' | 'new'
+  has_discount?: boolean
   page?: number
   limit?: number
 }): Promise<{ products: Product[]; total: number }> {
@@ -13,6 +14,7 @@ export async function getProducts(params?: {
   if (params?.category) qs.set('category', params.category)
   if (params?.subcategory) qs.set('subcategory', params.subcategory)
   if (params?.sort) qs.set('sort', params.sort)
+  if (params?.has_discount) qs.set('has_discount', 'true')
   if (params?.page) qs.set('page', String(params.page))
   if (params?.limit) qs.set('limit', String(params.limit))
 

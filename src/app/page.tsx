@@ -12,6 +12,8 @@ import type { Banner } from '@/types'
 const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'https://backanddommoda.onrender.com'
 
 const HOME_CATEGORIES = [
+  { href: '/catalog/sale', label: 'Акции' },
+  { href: '/catalog/new', label: 'Новинки' },
   { href: '/catalog/women', label: 'Женщинам' },
   { href: '/catalog/men', label: 'Мужчинам' },
   { href: '/catalog/kids', label: 'Детям' },
