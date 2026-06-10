@@ -83,9 +83,9 @@
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
-  /* padding-bottom that clears the fixed bottom nav (3.5rem) + iOS home indicator */
+  /* padding-bottom that clears the fixed bottom nav (~57px) + iOS home indicator */
   .pb-nav {
-    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
   }
 
   /* padding-top that clears the fixed top bar (3.5rem) + iOS notch */
