@@ -177,6 +177,12 @@ export function ProductPageClient({ id }: ProductPageClientProps) {
             {product.name}
           </h2>
 
+          {product.sku != null && (
+            <p className="text-xs text-outline font-mono mb-3">
+              Арт. {product.sku}
+            </p>
+          )}
+
           {/* Rating */}
           <div className="flex items-center gap-2 mb-4">
             <StarRating rating={product.rating} />

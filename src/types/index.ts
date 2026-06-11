@@ -4,6 +4,7 @@ export interface Product {
   name: string
   category: string
   subcategory: string
+  sku?: string | null
   price: number
   priceOriginal?: number
   discountPercent?: number

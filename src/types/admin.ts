@@ -16,6 +16,7 @@ export interface AdminProduct {
   brand: string
   category: ProductCategory
   subcategory: string
+  sku: string | null
   price: number
   price_original: number | null
   description: string
@@ -29,6 +30,7 @@ export interface AdminProductFormData {
   brand: string
   category: ProductCategory
   subcategory: string
+  sku: string | null
   price: number
   price_original: number | null
   description: string

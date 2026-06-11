@@ -20,6 +20,7 @@ const DEFAULT_FORM: AdminProductFormData = {
   brand: '',
   category: 'women',
   subcategory: '',
+  sku: null,
   price: 0,
   price_original: null,
   description: '',
@@ -34,6 +35,7 @@ function toFormData(product: AdminProduct): AdminProductFormData {
     brand: product.brand,
     category: product.category,
     subcategory: product.subcategory,
+    sku: product.sku,
     price: product.price,
     price_original: product.price_original,
     description: product.description,
@@ -129,6 +131,22 @@ export function ProductForm({ product }: ProductFormProps): React.JSX.Element {
           value={form.brand}
           onChange={(e) => setField('brand', e.target.value)}
           className="border border-outline-variant rounded px-3 py-2 text-sm text-on-surface bg-surface-container-lowest focus:outline-none focus:border-primary disabled:opacity-50"
+        />
+      </div>
+
+      {/* SKU */}
+      <div className="flex flex-col gap-1">
+        <label htmlFor="sku" className="text-sm font-medium text-on-surface-variant">
+          Артикул Lamoda
+        </label>
+        <input
+          id="sku"
+          type="text"
+          disabled={isSaving}
+          placeholder="MP002XW..."
+          value={form.sku ?? ''}
+          onChange={(e) => setField('sku', e.target.value.trim() || null)}
+          className="border border-outline-variant rounded px-3 py-2 text-sm text-on-surface bg-surface-container-lowest focus:outline-none focus:border-primary disabled:opacity-50 font-mono"
         />
       </div>
 

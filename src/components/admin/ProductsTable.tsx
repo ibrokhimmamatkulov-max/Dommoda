@@ -109,6 +109,7 @@ export function ProductsTable({ products }: ProductsTableProps): React.JSX.Eleme
               <tr>
                 <th className="text-left px-4 py-3 text-on-surface-variant font-medium w-16">Фото</th>
                 <th className="text-left px-4 py-3 text-on-surface-variant font-medium">Название</th>
+                <th className="text-left px-4 py-3 text-on-surface-variant font-medium">Артикул</th>
                 <th className="text-left px-4 py-3 text-on-surface-variant font-medium">Бренд</th>
                 <th className="text-left px-4 py-3 text-on-surface-variant font-medium">Категория</th>
                 <th className="text-left px-4 py-3 text-on-surface-variant font-medium">Цена</th>
@@ -140,6 +141,9 @@ export function ProductsTable({ products }: ProductsTableProps): React.JSX.Eleme
                   </td>
                   <td className="px-4 py-3 text-on-surface font-medium max-w-48 truncate">
                     {product.name}
+                  </td>
+                  <td className="px-4 py-3 text-on-surface-variant font-mono text-xs">
+                    {product.sku ?? <span className="text-outline">—</span>}
                   </td>
                   <td className="px-4 py-3 text-on-surface-variant">{product.brand}</td>
                   <td className="px-4 py-3 text-on-surface-variant">
