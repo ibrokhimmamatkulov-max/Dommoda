@@ -4,13 +4,20 @@
     "label": "Женщинам",
     "icon": "female",
     "subcategories": [
-      { "id": "dresses", "label": "Платья" },
-      { "id": "blouses", "label": "Блузки" },
-      { "id": "jeans", "label": "Джинсы" },
-      { "id": "jackets", "label": "Куртки" },
-      { "id": "shoes", "label": "Обувь" },
-      { "id": "pants", "label": "Брюки" },
-      { "id": "knitwear", "label": "Трикотаж" }
+      { "id": "dresses",    "label": "Платья" },
+      { "id": "blouses",    "label": "Блузки и рубашки" },
+      { "id": "tshirts",    "label": "Футболки и топы" },
+      { "id": "jeans",      "label": "Джинсы" },
+      { "id": "pants",      "label": "Брюки" },
+      { "id": "skirts",     "label": "Юбки" },
+      { "id": "jackets",    "label": "Куртки и пальто" },
+      { "id": "knitwear",   "label": "Свитеры и кардиганы" },
+      { "id": "blazers",    "label": "Пиджаки и жакеты" },
+      { "id": "jumpsuits",  "label": "Комбинезоны" },
+      { "id": "hoodies",    "label": "Худи и свитшоты" },
+      { "id": "shorts",     "label": "Шорты" },
+      { "id": "shoes",      "label": "Обувь" },
+      { "id": "accessories","label": "Аксессуары" }
     ]
   },
   {
@@ -18,11 +25,15 @@
     "label": "Мужчинам",
     "icon": "male",
     "subcategories": [
-      { "id": "shirts", "label": "Рубашки" },
-      { "id": "jeans", "label": "Джинсы" },
-      { "id": "polo", "label": "Поло" },
-      { "id": "jackets", "label": "Пиджаки" },
-      { "id": "shoes", "label": "Кроссовки" }
+      { "id": "shirts",     "label": "Рубашки" },
+      { "id": "tshirts",    "label": "Футболки и поло" },
+      { "id": "jeans",      "label": "Джинсы" },
+      { "id": "pants",      "label": "Брюки" },
+      { "id": "shorts",     "label": "Шорты" },
+      { "id": "knitwear",   "label": "Свитеры" },
+      { "id": "jackets",    "label": "Куртки и пиджаки" },
+      { "id": "shoes",      "label": "Обувь" },
+      { "id": "accessories","label": "Аксессуары" }
     ]
   },
   {
@@ -30,10 +41,12 @@
     "label": "Детям",
     "icon": "child_care",
     "subcategories": [
-      { "id": "dresses", "label": "Платья" },
-      { "id": "overalls", "label": "Комбинезоны" },
-      { "id": "sport", "label": "Спорт" },
-      { "id": "hoodies", "label": "Худи" }
+      { "id": "dresses",    "label": "Платья" },
+      { "id": "tshirts",    "label": "Футболки" },
+      { "id": "jeans",      "label": "Джинсы" },
+      { "id": "jackets",    "label": "Куртки" },
+      { "id": "jumpsuits",  "label": "Комбинезоны" },
+      { "id": "hoodies",    "label": "Худи" }
     ]
   },
   {
@@ -41,11 +54,12 @@
     "label": "Спорт",
     "icon": "sports_basketball",
     "subcategories": [
-      { "id": "leggings", "label": "Леггинсы" },
-      { "id": "tshirts", "label": "Футболки" },
-      { "id": "jackets", "label": "Куртки" },
-      { "id": "shoes", "label": "Кроссовки" },
-      { "id": "shorts", "label": "Шорты" }
+      { "id": "leggings",   "label": "Леггинсы" },
+      { "id": "tshirts",    "label": "Футболки" },
+      { "id": "shorts",     "label": "Шорты" },
+      { "id": "jackets",    "label": "Куртки и ветровки" },
+      { "id": "shoes",      "label": "Кроссовки" },
+      { "id": "sport_sets", "label": "Костюмы" }
     ]
   }
 ]
