@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { TopAppBar } from '@/components/layout/TopAppBar'
@@ -24,6 +24,7 @@ export default function CheckoutPage() {
   const clearCart = useCartStore((s) => s.clearCart)
   const fmt = usePrice()
   const rate = useCurrencyStore((s) => s.rate)
+  const orderCompleted = useRef(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -42,9 +43,9 @@ export default function CheckoutPage() {
 
   const deliveryMethod = watch('deliveryMethod')
 
-  // Redirect if cart is empty
+  // Redirect if cart is empty (but not right after completing an order)
   useEffect(() => {
-    if (items.length === 0) {
+    if (items.length === 0 && !orderCompleted.current) {
       router.replace('/cart')
     }
   }, [items.length, router])
@@ -94,6 +95,7 @@ export default function CheckoutPage() {
       }
 
       const order = await res.json() as { id: string }
+      orderCompleted.current = true
       clearCart()
       router.push(`/checkout/success?order=${order.id}`)
     } catch {

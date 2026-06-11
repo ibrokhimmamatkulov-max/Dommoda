@@ -203,11 +203,16 @@ export default function OrderTrackingPage() {
       <section className="mb-8">
         <h2 className="text-sm font-semibold text-on-surface-variant uppercase tracking-wide mb-2">Доставка</h2>
         <p className="text-sm text-on-surface">{DELIVERY_LABELS[order.delivery_method] ?? order.delivery_method}</p>
-        <p className="text-sm text-on-surface-variant mt-0.5">
-          {order.city}, {order.street}, д. {order.building}
-          {order.apartment ? `, кв. ${order.apartment}` : ''}
-        </p>
-        <p className="text-sm text-on-surface-variant">{order.recipient_name} · {order.phone}</p>
+        {order.city || order.street ? (
+          <p className="text-sm text-on-surface-variant mt-0.5">
+            {[order.city, order.street, order.building ? `д. ${order.building}` : null, order.apartment ? `кв. ${order.apartment}` : null]
+              .filter(Boolean).join(', ')}
+          </p>
+        ) : (
+          <p className="text-sm text-on-surface-variant mt-0.5 italic">Адрес уточняется — менеджер свяжется с вами</p>
+        )}
+        {order.recipient_name && <p className="text-sm text-on-surface-variant">{order.recipient_name} · {order.phone}</p>}
+        {!order.recipient_name && <p className="text-sm text-on-surface-variant">{order.phone}</p>}
         {order.comment && <p className="text-sm text-on-surface-variant mt-1">💬 {order.comment}</p>}
       </section>
 
