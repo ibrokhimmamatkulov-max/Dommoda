@@ -6,6 +6,7 @@ import { AdminHeader } from '@/components/admin/AdminHeader'
 interface OrderItem {
   product_name: string
   brand: string
+  sku: string | null
   size: string
   color: string
   quantity: number
@@ -144,9 +145,15 @@ export default function AdminOrdersPage(): React.JSX.Element {
                         <p className="text-xs font-semibold text-on-surface-variant uppercase tracking-wide mb-2">Состав заказа</p>
                         <div className="flex flex-col gap-1">
                           {order.items.map((item, i) => (
-                            <div key={i} className="flex justify-between text-sm">
-                              <span>{item.brand} {item.product_name} — {item.size}, {item.color} × {item.quantity}</span>
-                              <span className="font-medium shrink-0 ml-4">{formatPrice(item.unit_price * item.quantity)}</span>
+                            <div key={i} className="flex justify-between text-sm gap-4">
+                              <span>
+                                {item.brand} {item.product_name}
+                                {item.sku != null && (
+                                  <span className="ml-1 font-mono text-xs text-outline">[{item.sku}]</span>
+                                )}
+                                {' '}— {item.size}{item.color ? `, ${item.color}` : ''} × {item.quantity}
+                              </span>
+                              <span className="font-medium shrink-0">{formatPrice(item.unit_price * item.quantity)}</span>
                             </div>
                           ))}
                         </div>
