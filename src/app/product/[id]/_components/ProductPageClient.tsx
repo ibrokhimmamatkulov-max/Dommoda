@@ -33,6 +33,7 @@ function ProductAttributes({ description }: { description: string }) {
       a !== null &&
       a.value !== '' &&
       !a.label.toLowerCase().startsWith('артикул') &&
+      !a.label.toLowerCase().startsWith('страна') &&
       !a.label.includes(',')
     )
 
