@@ -18,7 +18,6 @@ export default function CheckoutPage() {
   const router = useRouter()
   const items = useCartStore((s) => s.items)
   const getTotalPrice = useCartStore((s) => s.getTotalPrice)
-  const getDiscountTotal = useCartStore((s) => s.getDiscountTotal)
   const promoDiscount = useCartStore((s) => s.promoDiscount)
   const promoCode = useCartStore((s) => s.promoCode)
   const clearCart = useCartStore((s) => s.clearCart)
@@ -51,9 +50,8 @@ export default function CheckoutPage() {
   }, [items.length, router])
 
   const totalPrice = getTotalPrice()
-  const discountTotal = getDiscountTotal()
   const deliveryCost = deliveryMethod === 'courier' ? DELIVERY_TJS : 0
-  const finalTotalTJS = Math.round(Math.max(0, totalPrice - discountTotal) * rate) + deliveryCost
+  const finalTotalTJS = Math.round(Math.max(0, totalPrice - promoDiscount) * rate) + deliveryCost
 
   const onSubmit = async (data: CheckoutFormData) => {
     setIsSubmitting(true)
