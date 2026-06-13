@@ -17,6 +17,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
     <SpecialCatalogPageClient
       title={name.toUpperCase()}
       brand={name}
+      showSubcategoryChips
       analyticsPath={`/catalog/brands/${brand}`}
     />
   )
