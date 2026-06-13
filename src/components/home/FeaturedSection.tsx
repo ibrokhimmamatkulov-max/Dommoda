@@ -37,7 +37,7 @@ export function FeaturedSection() {
   return (
     <section className="px-4 pb-8">
       <h2 className="font-headline font-bold uppercase text-primary text-xl mb-6">
-        Популярное
+        Новинки
       </h2>
 
       {error != null ? (
@@ -45,7 +45,7 @@ export function FeaturedSection() {
       ) : (
         <div className="grid grid-cols-2 gap-x-4 gap-y-8">
           {isLoading
-            ? Array.from({ length: 4 }).map((_, i) => (
+            ? Array.from({ length: 12 }).map((_, i) => (
                 <ProductCardSkeleton key={i} />
               ))
             : products.map((product) => (
