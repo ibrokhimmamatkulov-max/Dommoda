@@ -29,7 +29,12 @@ function ProductAttributes({ description }: { description: string }) {
       if (sep === -1) return null
       return { label: line.slice(0, sep).trim(), value: line.slice(sep + 1).trim() }
     })
-    .filter((a): a is { label: string; value: string } => a !== null && a.value !== '')
+    .filter((a): a is { label: string; value: string } =>
+      a !== null &&
+      a.value !== '' &&
+      !a.label.toLowerCase().startsWith('артикул') &&
+      !a.label.includes(',')
+    )
 
   if (attrs.length === 0) {
     return <p className="text-sm text-on-surface-variant mt-2 mb-4">{description}</p>
