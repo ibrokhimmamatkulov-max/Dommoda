@@ -14,9 +14,9 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { href: '/', icon: 'home', label: 'Главная', matchPaths: ['/'] },
   {
-    href: '/catalog/women',
-    icon: 'search',
-    label: 'Каталог',
+    href: '/catalog/brands',
+    icon: 'style',
+    label: 'Бренды',
     matchPaths: ['/catalog'],
   },
   { href: '/cart', icon: 'shopping_bag', label: 'Корзина', matchPaths: ['/cart'] },
