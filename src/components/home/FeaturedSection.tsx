@@ -56,7 +56,7 @@ export function FeaturedSection() {
 
       <div className="mt-8">
         <button
-          onClick={() => router.push('/catalog/all')}
+          onClick={() => router.push('/catalog/women')}
           className="w-full border border-primary text-primary py-4 font-medium uppercase tracking-wide text-sm hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary-fixed"
         >
           Показать ещё
