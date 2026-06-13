@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import { TopAppBar } from '@/components/layout/TopAppBar'
 import { BottomNavBar } from '@/components/layout/BottomNavBar'
+import { CategoryChips } from '@/components/catalog/CategoryChips'
 import { FilterSortBar } from '@/components/catalog/FilterSortBar'
 import { FilterBottomSheet, type ActiveFilters } from '@/components/catalog/FilterBottomSheet'
 import { ProductCard } from '@/components/product/ProductCard'
@@ -20,10 +21,31 @@ const SORT_LABELS: Record<ActiveFilters['sort'], string> = {
   price_desc: 'Цена ↓',
 }
 
+const ALL_SUBCATEGORIES = [
+  { id: 'tshirts',     label: 'Футболки' },
+  { id: 'dresses',     label: 'Платья' },
+  { id: 'blouses',     label: 'Блузки' },
+  { id: 'jeans',       label: 'Джинсы' },
+  { id: 'pants',       label: 'Брюки' },
+  { id: 'skirts',      label: 'Юбки' },
+  { id: 'shorts',      label: 'Шорты' },
+  { id: 'shirts',      label: 'Рубашки' },
+  { id: 'knitwear',    label: 'Свитеры' },
+  { id: 'hoodies',     label: 'Худи' },
+  { id: 'blazers',     label: 'Пиджаки' },
+  { id: 'jumpsuits',   label: 'Комбинезоны' },
+  { id: 'jackets',     label: 'Куртки' },
+  { id: 'shoes',       label: 'Обувь' },
+  { id: 'accessories', label: 'Аксессуары' },
+  { id: 'leggings',    label: 'Леггинсы' },
+  { id: 'sport_sets',  label: 'Костюмы' },
+]
+
 interface SpecialCatalogPageClientProps {
   title: string
   hasDiscount?: boolean
   brand?: string
+  showSubcategoryChips?: boolean
   defaultSort?: ActiveFilters['sort']
   analyticsPath: string
   pageLimit?: number
@@ -33,12 +55,14 @@ export function SpecialCatalogPageClient({
   title,
   hasDiscount,
   brand,
+  showSubcategoryChips = false,
   defaultSort = 'popular',
   analyticsPath,
   pageLimit = DEFAULT_PAGE_LIMIT,
 }: SpecialCatalogPageClientProps) {
   const [products, setProducts] = useState<Product[]>([])
   const [total, setTotal] = useState(0)
+  const [activeSubcategory, setActiveSubcategory] = useState<string | null>(null)
   const [filters, setFilters] = useState<ActiveFilters>({ sort: defaultSort, size: null, minPrice: '', maxPrice: '' })
   const [filterSheetOpen, setFilterSheetOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -67,6 +91,7 @@ export function SpecialCatalogPageClient({
         const result = await getProducts({
           has_discount: hasDiscount,
           brand,
+          subcategory: activeSubcategory ?? undefined,
           sort: filters.sort,
           size: filters.size ?? undefined,
           min_price: filters.minPrice !== '' ? Number(filters.minPrice) : undefined,
@@ -90,7 +115,7 @@ export function SpecialCatalogPageClient({
         setIsLoadingMore(false)
       }
     },
-    [hasDiscount, brand, filters, pageLimit]
+    [hasDiscount, brand, activeSubcategory, filters, pageLimit]
   )
 
   useEffect(() => {
@@ -98,6 +123,7 @@ export function SpecialCatalogPageClient({
   }, [loadProducts])
 
   const activeFiltersCount =
+    (activeSubcategory != null ? 1 : 0) +
     (filters.sort !== defaultSort ? 1 : 0) +
     (filters.size != null ? 1 : 0) +
     (filters.minPrice !== '' || filters.maxPrice !== '' ? 1 : 0)
@@ -107,6 +133,15 @@ export function SpecialCatalogPageClient({
       <TopAppBar variant="catalog" title={title} />
 
       <main className="pb-nav">
+        {showSubcategoryChips && (
+          <CategoryChips
+            variant="catalog"
+            subcategories={ALL_SUBCATEGORIES}
+            activeSubcategory={activeSubcategory}
+            onSelect={setActiveSubcategory}
+          />
+        )}
+
         <FilterSortBar
           activeFiltersCount={activeFiltersCount}
           sortLabel={SORT_LABELS[filters.sort]}
